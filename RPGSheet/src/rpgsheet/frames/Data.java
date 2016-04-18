@@ -19,5 +19,8 @@ public class Data implements Serializable{
         month=i0;
         year=i1;
     }
+    public Data(int i){
+        this(i/1000000,(i%100)/1000,i%1000);
+    }
     
 }

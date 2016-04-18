@@ -7,6 +7,8 @@
 package rpgsheet.frames;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.*;
 import javax.swing.*;
 
@@ -22,6 +24,19 @@ public class Main {
     public static void main(String[] args) {
         
         ficha=new Ficha();
+        String resposta=JOptionPane.showInputDialog("o que quer fazer ?","(novo,exibir)");
+        if (resposta!=null){
+            if (resposta.equals("novo"))
+                    {
+                List<JTextPane>frame=new ArrayList();
+                frame.add(new JTextPane());
+                frame.add(new JTextPane());
+                frame.add(new JTextPane());
+                frame.add(new JTextPane());
+                JOptionPane.showInputDialog(frame);
+                //Main.ficha=new Ficha(frame.getComponent(0).toString(),frame.getComponent(1).toString(),new Data(Integer.parseInt(frame.getComponent(2).toString().trim())));
+            }
+        }
         //frame =new Janela();
         //frame.setVisible(true);        
     }
