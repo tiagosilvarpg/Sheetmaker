@@ -6,16 +6,19 @@
 
 package rpgsheet.frames;
 
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Tiago
  */
-public class PaginaForm extends javax.swing.JPanel {
+public class PagePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form pagina
+     * Creates new form PagePanel
      */
-    public PaginaForm() {
+    public PagePanel() {
         initComponents();
     }
 
@@ -28,19 +31,39 @@ public class PaginaForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PageText = new javax.swing.JTextArea();
+
+        PageText.setEditable(false);
+        PageText.setColumns(20);
+        PageText.setRows(5);
+        jScrollPane1.setViewportView(PageText);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 479, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 633, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea PageText;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    public JTextArea getTextPanel(){
+        return this.PageText;
+    }
 }
+

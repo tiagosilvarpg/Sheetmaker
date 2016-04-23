@@ -9,13 +9,18 @@ package rpgsheet.elements;
  *
  * @author FACOMP
  */
-class Item {
-    String nome,descricao;
-    int quantidade;
+public class Item {
+    protected String nome,descricao;
+    protected int quantidade;
     public Item(Item i){
-        nome=i.nome;
-        descricao=i.descricao;
-        quantidade=i.quantidade;
+        this(i.nome,i.descricao,i.quantidade);
     }
-    
+    public Item(String nome,String descricao, int quantidade){
+        this.nome=nome;
+        this.descricao=descricao;
+        this.quantidade=quantidade;
+    }
+    public String toString(){
+        return nome+" ("+quantidade+")";
+    }
 }

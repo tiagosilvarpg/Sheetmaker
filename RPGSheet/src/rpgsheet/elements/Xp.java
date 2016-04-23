@@ -14,7 +14,26 @@ import javax.swing.JOptionPane;
  * @author Tiago
  */
 public class Xp implements Gerenciavel,Serializable{
-    int total,proximoNivel,level,pontos;
+    protected int total,proximoNivel,pontos;
+    
+    public Xp (int total,int proximoNivel,int pontos){
+        super();
+        this.total=total;
+        this.proximoNivel=proximoNivel;
+        this.pontos=pontos;
+    }
+    public Xp(){
+        this(0,10,0);
+    }
+    public Xp(Xp x){
+        this.total=x.total;
+        this.proximoNivel=x.proximoNivel;
+        this.pontos=x.pontos;
+    }
+    @Override
+    public String toString(){
+        return "experiencia "+total+"/"+proximoNivel+"("+pontos+")";
+    }
     @Override
     public void increase(int xp){
         total+=xp;

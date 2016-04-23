@@ -6,29 +6,26 @@
 
 package rpgsheet.frames;
 
-import javax.swing.JOptionPane;
-import rpgsheet.elements.*;
+import rpgsheet.elements.Recurso;
 
 /**
  *
  * @author Tiago
  */
-public class AtributeFrameForm extends javax.swing.JPanel {
+public class ResourceButtom extends javax.swing.JButton {
 
-    Atribute element;/**
-     * Creates new form AtributeFrameForm
+    /**
+     * Creates new form ResourceButtom
      */
-
-    
-    AtributeFrameForm(Element element) {
-
-
+    private Recurso recurso;
+    public ResourceButtom(Recurso r)
+    {
+        this();
+        this.recurso=r;
     }
-
-    AtributeFrameForm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ResourceButtom() {
+        initComponents();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,49 +36,29 @@ public class AtributeFrameForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nome = new javax.swing.JLabel();
-        numbers = new javax.swing.JLabel();
-
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
 
-        nome.setText("Atributo");
-
-        numbers.setText("0/5");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(numbers)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 90, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nome)
-                    .addComponent(numbers))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 28, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,new AtributeClick(element), "Atribute action", -1);
     }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel nome;
-    private javax.swing.JLabel numbers;
     // End of variables declaration//GEN-END:variables
 }

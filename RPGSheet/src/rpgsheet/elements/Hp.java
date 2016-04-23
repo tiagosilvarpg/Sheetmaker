@@ -6,38 +6,33 @@
 
 package rpgsheet.elements;
 
-import java.io.Serializable;
-
 /**
  *
  * @author Tiago
  */
-public class Hp implements Escalavel,Serializable{
-    int valor,maximo;
-    enum modificador{SAUDAVEL,ESCORIADO,MACHUCADO,FERIDO,FERIDO_GRAVEMENTE,ESPANCADO,ALEIJADO,INCAPACITADO};//0,0,1,1,2,2,5
-    
+public class Hp extends Recurso {
+    //0,0,1,1,2,2,5
+    protected modificadorDeSaude modificador;
     public Hp(){
-        valor=0;
-        maximo=10;
-    
+        modificador=modificadorDeSaude.SAUDAVEL;
     }
-    
+    public Hp(String label,int valor,int maximo){
+        super(label,valor,maximo);
+        modificador=modificadorDeSaude.SAUDAVEL;
+    }
+    public Hp(Hp outro){
+        super(outro.label,outro.valor,outro.maximo);
+        modificador=modificadorDeSaude.SAUDAVEL;
+    }
     @Override
-    public void setValor(int i){
-         if (i>=0)
-         valor=i;
-     }
- @Override
-     public int getValor(){
-         return valor;
-     }
-    @Override
-     public void setMaximo(int i){
-         if (i>0) maximo=i;
-     }
- @Override
-     public int getMaximo(){
-         return maximo;
-     }
+    public String toString(){
+        if (valor==maximo-1)
+            modificador=modificadorDeSaude.ESCORIADO;
+        return label+" "+valor+"/"+maximo+"("+modificador+")";
+    }
+
     
 }
+enum modificadorDeSaude{
+    SAUDAVEL,ESCORIADO,MACHUCADO,FERIDO,FERIDO_GRAVEMENTE,ESPANCADO,ALEIJADO,INCAPACITADO
+};

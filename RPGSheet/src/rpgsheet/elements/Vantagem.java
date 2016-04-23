@@ -10,8 +10,8 @@ package rpgsheet.elements;
  *
  * @author Tiago
  */
-public class Habilidade extends Caracteristica{
-    protected  static int increaseCost=1;
+public class Vantagem extends Caracteristica{
+    protected  static int increaseCost=2;
     protected  String descricao;
     
     public void setDescricao(String descricao){
@@ -20,14 +20,14 @@ public class Habilidade extends Caracteristica{
     public String getDescricao(){
         return descricao;
     } 
-    public Habilidade(String label,int valor,int maximo,String descricao){
+    public Vantagem(String label,int valor,int maximo,String descricao){
         super(label,valor,maximo);
         this.descricao=descricao;
     }
-    public Habilidade(){
-        super("Habilidade",0,5);
+    public Vantagem(){
+        super("Vantagem",0,5);
     }
-    public Habilidade(Habilidade i){
+    public Vantagem(Vantagem i){
         super(i);        
     }
     

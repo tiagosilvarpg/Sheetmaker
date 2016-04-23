@@ -2,7 +2,13 @@ package rpgsheet.frames;
 
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
 import rpgsheet.elements.*;
 import static rpgsheet.frames.Main.ficha;
 
@@ -21,10 +27,16 @@ public class Janela extends javax.swing.JFrame {
     /**
      * Creates new form Janela
      */
-    Ficha ficha;
     public Janela() {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
-        this.ficha=Main.ficha;
+        Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dw = getSize();
+        setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
     }
 
 
@@ -37,98 +49,66 @@ public class Janela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        radiobutons = new javax.swing.ButtonGroup();
-        butoes = new javax.swing.JPanel();
-        viewRadio = new javax.swing.JRadioButton();
-        manageRadio = new javax.swing.JRadioButton();
-        createRadio = new javax.swing.JRadioButton();
-        load = new javax.swing.JButton();
-        newficha = new javax.swing.JButton();
-        page = new javax.swing.JButton();
-        atribute = new javax.swing.JButton();
-        save = new javax.swing.JButton();
-        paginas = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        left = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        life = new javax.swing.JLabel();
-        experience = new javax.swing.JLabel();
-        points = new javax.swing.JLabel();
-        mana = new javax.swing.JLabel();
+        top = new javax.swing.JPanel();
+        filePanel = new javax.swing.JPanel();
+        newficha = new javax.swing.JButton();
+        save = new javax.swing.JButton();
+        load = new javax.swing.JButton();
+        toolPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        mid = new javax.swing.JPanel();
+        mainPanel = new javax.swing.JPanel();
+        newInfo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        CharacterInfo = new javax.swing.JTextArea();
+        ResourcesPanel = new javax.swing.JPanel();
+        newResource = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ResourceText = new javax.swing.JTextArea();
+        ItensPanel = new javax.swing.JPanel();
+        newItem = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ItemsText = new javax.swing.JTextArea();
+        bottom = new javax.swing.JPanel();
+        newAtribute = new javax.swing.JButton();
+        newPage = new javax.swing.JButton();
+        PaginasTab = new javax.swing.JTabbedPane();
+        newHabilidade = new javax.swing.JButton();
+        newAdvantage = new javax.swing.JButton();
+        right = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        DebugScroll = new javax.swing.JScrollPane();
+        Debug = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 255, 255));
+        setBackground(new java.awt.Color(0, 255, 153));
         setMaximumSize(new java.awt.Dimension(567, 759));
         setMinimumSize(new java.awt.Dimension(567, 759));
+        setResizable(false);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.X_AXIS));
 
-        butoes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        left.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        radiobutons.add(viewRadio);
-        viewRadio.setText("View");
-        viewRadio.setFocusable(false);
-        viewRadio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        viewRadio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        viewRadio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewRadioActionPerformed(evt);
-            }
-        });
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ficha"));
 
-        radiobutons.add(manageRadio);
-        manageRadio.setText("Manage");
-        manageRadio.setFocusable(false);
-        manageRadio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        manageRadio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        top.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        radiobutons.add(createRadio);
-        createRadio.setText("Create");
-        createRadio.setFocusable(false);
-        createRadio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        createRadio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        createRadio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createRadioActionPerformed(evt);
-            }
-        });
-
-        load.setText("load");
-        load.setBorder(null);
-        load.setFocusable(false);
-        load.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        load.setOpaque(false);
-        load.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        load.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadActionPerformed(evt);
-            }
-        });
+        filePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("File"));
 
         newficha.setText("new");
+        buttonGroup1.add(newficha);
         newficha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newfichaActionPerformed(evt);
             }
         });
 
-        page.setText("new page");
-        page.setBorder(null);
-        page.setOpaque(false);
-        page.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pageActionPerformed(evt);
-            }
-        });
-
-        atribute.setText("new atribute");
-        atribute.setBorder(null);
-        atribute.setOpaque(false);
-        atribute.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atributeActionPerformed(evt);
-            }
-        });
-
         save.setText("save");
         save.setBorder(null);
+        buttonGroup1.add(save);
         save.setFocusable(false);
         save.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         save.setOpaque(false);
@@ -139,85 +119,280 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout butoesLayout = new javax.swing.GroupLayout(butoes);
-        butoes.setLayout(butoesLayout);
-        butoesLayout.setHorizontalGroup(
-            butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(butoesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(butoesLayout.createSequentialGroup()
-                        .addGroup(butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, butoesLayout.createSequentialGroup()
-                                .addComponent(newficha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(butoesLayout.createSequentialGroup()
-                                .addComponent(createRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                                .addGap(35, 35, 35)))
-                        .addGroup(butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(butoesLayout.createSequentialGroup()
-                                .addComponent(manageRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                                .addGap(29, 29, 29))
-                            .addComponent(save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(load, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(butoesLayout.createSequentialGroup()
-                                .addComponent(viewRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                                .addGap(29, 29, 29))))
-                    .addGroup(butoesLayout.createSequentialGroup()
-                        .addComponent(page, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(atribute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(91, 91, 91)))
-                .addGap(38, 38, 38))
+        load.setText("load");
+        load.setBorder(null);
+        buttonGroup1.add(load);
+        load.setFocusable(false);
+        load.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        load.setOpaque(false);
+        load.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        load.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout filePanelLayout = new javax.swing.GroupLayout(filePanel);
+        filePanel.setLayout(filePanelLayout);
+        filePanelLayout.setHorizontalGroup(
+            filePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filePanelLayout.createSequentialGroup()
+                .addComponent(newficha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(save)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(load)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        butoesLayout.setVerticalGroup(
-            butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(butoesLayout.createSequentialGroup()
+
+        filePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {load, newficha, save});
+
+        filePanelLayout.setVerticalGroup(
+            filePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(save)
+            .addComponent(load)
+            .addComponent(newficha)
+        );
+
+        filePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {load, newficha, save});
+
+        toolPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Tools"));
+
+        jButton1.setText("Roll Dice");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout toolPanelLayout = new javax.swing.GroupLayout(toolPanel);
+        toolPanel.setLayout(toolPanelLayout);
+        toolPanelLayout.setHorizontalGroup(
+            toolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(toolPanelLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        toolPanelLayout.setVerticalGroup(
+            toolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1)
+        );
+
+        javax.swing.GroupLayout topLayout = new javax.swing.GroupLayout(top);
+        top.setLayout(topLayout);
+        topLayout.setHorizontalGroup(
+            topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topLayout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(filePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(toolPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        topLayout.setVerticalGroup(
+            topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topLayout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(toolPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        filePanel.getAccessibleContext().setAccessibleName("file");
+
+        mid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        mainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Character information"));
+
+        newInfo.setText("Edit Info");
+        newInfo.setBorder(null);
+        newInfo.setOpaque(false);
+        newInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newInfoActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        CharacterInfo.setEditable(false);
+        CharacterInfo.setColumns(20);
+        CharacterInfo.setLineWrap(true);
+        CharacterInfo.setRows(5);
+        CharacterInfo.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(CharacterInfo);
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(load, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newficha, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(manageRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(butoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(butoesLayout.createSequentialGroup()
-                        .addComponent(page, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(atribute, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(newInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 182, Short.MAX_VALUE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addComponent(newInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
-        paginas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ResourcesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Other informations"));
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        newResource.setText("new resource");
+        newResource.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newResourceActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        ResourceText.setEditable(false);
+        ResourceText.setColumns(20);
+        ResourceText.setLineWrap(true);
+        ResourceText.setRows(5);
+        ResourceText.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(ResourceText);
+
+        javax.swing.GroupLayout ResourcesPanelLayout = new javax.swing.GroupLayout(ResourcesPanel);
+        ResourcesPanel.setLayout(ResourcesPanelLayout);
+        ResourcesPanelLayout.setHorizontalGroup(
+            ResourcesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ResourcesPanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(newResource)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(ResourcesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        ResourcesPanelLayout.setVerticalGroup(
+            ResourcesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ResourcesPanelLayout.createSequentialGroup()
+                .addComponent(newResource)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ItensPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Inventory"));
 
-        life.setText("Life");
+        newItem.setText("new item");
+        newItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newItemActionPerformed(evt);
+            }
+        });
 
-        experience.setText("Experience");
+        ItemsText.setEditable(false);
+        ItemsText.setColumns(20);
+        ItemsText.setRows(5);
+        jScrollPane3.setViewportView(ItemsText);
 
-        points.setText("Points");
+        javax.swing.GroupLayout ItensPanelLayout = new javax.swing.GroupLayout(ItensPanel);
+        ItensPanel.setLayout(ItensPanelLayout);
+        ItensPanelLayout.setHorizontalGroup(
+            ItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ItensPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(newItem)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(ItensPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        ItensPanelLayout.setVerticalGroup(
+            ItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ItensPanelLayout.createSequentialGroup()
+                .addComponent(newItem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3)
+                .addContainerGap())
+        );
 
-        mana.setText("Mana");
+        javax.swing.GroupLayout midLayout = new javax.swing.GroupLayout(mid);
+        mid.setLayout(midLayout);
+        midLayout.setHorizontalGroup(
+            midLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(midLayout.createSequentialGroup()
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ResourcesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ItensPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        midLayout.setVerticalGroup(
+            midLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(midLayout.createSequentialGroup()
+                .addGroup(midLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ResourcesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ItensPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        bottom.setBorder(javax.swing.BorderFactory.createTitledBorder("Paginas"));
+
+        newAtribute.setText("new Atribute");
+        newAtribute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newAtributeActionPerformed(evt);
+            }
+        });
+
+        newPage.setText("new Page");
+        newPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPageActionPerformed(evt);
+            }
+        });
+
+        PaginasTab.setBorder(javax.swing.BorderFactory.createTitledBorder("Paginas"));
+
+        newHabilidade.setText("new Ability");
+
+        newAdvantage.setText("new Advantage");
+
+        javax.swing.GroupLayout bottomLayout = new javax.swing.GroupLayout(bottom);
+        bottom.setLayout(bottomLayout);
+        bottomLayout.setHorizontalGroup(
+            bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottomLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newAtribute)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newHabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newAdvantage, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newPage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(PaginasTab, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        bottomLayout.setVerticalGroup(
+            bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottomLayout.createSequentialGroup()
+                .addGroup(bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newAtribute)
+                    .addComponent(newPage)
+                    .addComponent(newHabilidade)
+                    .addComponent(newAdvantage))
+                .addGap(18, 18, 18)
+                .addComponent(PaginasTab, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,65 +400,104 @@ public class Janela extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(life, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(experience))
-                .addGap(62, 62, 62)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mana)
-                    .addComponent(points))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(bottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(top, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(life)
-                    .addComponent(mana))
+                .addComponent(top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(experience)
-                    .addComponent(points))
+                .addComponent(mid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(butoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paginas)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout leftLayout = new javax.swing.GroupLayout(left);
+        left.setLayout(leftLayout);
+        leftLayout.setHorizontalGroup(
+            leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(butoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paginas, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        leftLayout.setVerticalGroup(
+            leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        getContentPane().add(left);
+
+        right.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Debug"));
+
+        Debug.setColumns(20);
+        Debug.setLineWrap(true);
+        Debug.setRows(5);
+        Debug.setWrapStyleWord(true);
+        DebugScroll.setViewportView(Debug);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DebugScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DebugScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout rightLayout = new javax.swing.GroupLayout(right);
+        right.setLayout(rightLayout);
+        rightLayout.setHorizontalGroup(
+            rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        rightLayout.setVerticalGroup(
+            rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(right);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
+    private void newItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newItemActionPerformed
         // TODO add your handling code here:
-        Main.save();
-    }//GEN-LAST:event_saveMouseClicked
+        Main.newItem();
+    }//GEN-LAST:event_newItemActionPerformed
+
+    private void newResourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newResourceActionPerformed
+        // TODO add your handling code here:
+        Main.newResource();
+    }//GEN-LAST:event_newResourceActionPerformed
+
+    private void newInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newInfoActionPerformed
+        // TODO add your handling code here:
+        Main.newInfo();
+    }//GEN-LAST:event_newInfoActionPerformed
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
         // TODO add your handling code here:
@@ -291,35 +505,35 @@ public class Janela extends javax.swing.JFrame {
         Main.refresh();
     }//GEN-LAST:event_loadActionPerformed
 
-    private void viewRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRadioActionPerformed
+    private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_viewRadioActionPerformed
-
-    private void createRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRadioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createRadioActionPerformed
-
-    private void pageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pageActionPerformed
-        // TODO add your handling code here:
-        //Main.addPage();        
-        paginas.addTab("pagina 1", new PaginaForm());
-        paginas.getFocusCycleRootAncestor();
-
-    }//GEN-LAST:event_pageActionPerformed
-
-    private void atributeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atributeActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_atributeActionPerformed
+        Main.save();
+    }//GEN-LAST:event_saveMouseClicked
 
     private void newfichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newfichaActionPerformed
         // TODO add your handling code here:
-        String nome,sistema;        
-        nome = JOptionPane.showInputDialog("nome do personagem","personagem");
-        sistema = JOptionPane.showInputDialog("sistema","sistema");
-        ficha = new Ficha(nome,sistema,new Data(15,04,2016));
-        Main.refresh();
+        Main.newFicha();
     }//GEN-LAST:event_newfichaActionPerformed
+
+    private void newAtributeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAtributeActionPerformed
+        // TODO add your handling code here:
+        Main.setCurrentPage(this.PaginasTab.getSelectedIndex());
+         System.out.println("Janela clicou aba selecionada "+PaginasTab.getSelectedIndex());
+        Main.newAtribute();
+       
+        
+        
+    }//GEN-LAST:event_newAtributeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Main.diceRoll();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void newPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPageActionPerformed
+        //NEW PAGE
+        Main.newPage();
+    }//GEN-LAST:event_newPageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,22 +541,84 @@ public class Janela extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton atribute;
-    private javax.swing.JPanel butoes;
-    private javax.swing.JRadioButton createRadio;
-    private javax.swing.JLabel experience;
+    private javax.swing.JTextArea CharacterInfo;
+    private javax.swing.JTextArea Debug;
+    private javax.swing.JScrollPane DebugScroll;
+    private javax.swing.JTextArea ItemsText;
+    private javax.swing.JPanel ItensPanel;
+    private javax.swing.JTabbedPane PaginasTab;
+    private javax.swing.JTextArea ResourceText;
+    private javax.swing.JPanel ResourcesPanel;
+    private javax.swing.JPanel bottom;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPanel filePanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel life;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JPanel left;
     private javax.swing.JButton load;
-    private javax.swing.JLabel mana;
-    private javax.swing.JRadioButton manageRadio;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel mid;
+    private javax.swing.JButton newAdvantage;
+    private javax.swing.JButton newAtribute;
+    private javax.swing.JButton newHabilidade;
+    private javax.swing.JButton newInfo;
+    private javax.swing.JButton newItem;
+    private javax.swing.JButton newPage;
+    private javax.swing.JButton newResource;
     private javax.swing.JButton newficha;
-    private javax.swing.JButton page;
-    private javax.swing.JTabbedPane paginas;
-    private javax.swing.JLabel points;
-    private javax.swing.ButtonGroup radiobutons;
+    private javax.swing.JPanel right;
     private javax.swing.JButton save;
-    private javax.swing.JRadioButton viewRadio;
+    private javax.swing.JPanel toolPanel;
+    private javax.swing.JPanel top;
     // End of variables declaration//GEN-END:variables
+    public void print(String novo){
+        Debug.setText(Debug.getText()+novo+"\n===========================================\n");
+    }
+
+    void refresh() {      
+        
+        
+        loadInfo();
+        loadResources();
+        loadItems();
+        loadCaracteristicas();
+    }
+
+    private void loadResources() {
+        String text="";
+        for(Recurso r:ficha.getResources()){
+           text+=r.toString()+"\n";
+        ResourceText.setText(text);
+        }
+    }
+    private void loadCaracteristicas() {
+        PaginasTab.removeAll();
+       for(int i=0;i<ficha.getPaginas().size();i++)        
+        try{
+            Pagina pagina=ficha.getPagina(i);
+            PagePanel panel=new PagePanel();
+            panel.getTextPanel().setText("");
+            PaginasTab.addTab(pagina.getLabel(),panel );
+            PaginasTab.setTitleAt(i,ficha.getPaginas().get(i).getLabel());
+        }
+        catch(ArrayIndexOutOfBoundsException ex){
+            System.out.println("erro de array");
+        }
+    }
+
+    private void loadInfo() {
+        CharacterInfo.setText(ficha.getInfo().toString());
+    }
+
+    private void loadItems() {
+        String text="";
+        for(Item r:ficha.getItems()){
+           text+=r.toString()+"\n";
+        ItemsText.setText(text);
+        }
+    }
 }

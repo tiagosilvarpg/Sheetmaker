@@ -8,8 +8,8 @@ package rpgsheet.elements;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import rpgsheet.frames.Data;
 
 
 /**
@@ -17,21 +17,34 @@ import rpgsheet.frames.Data;
  * @author Tiago
  */
 public class Ficha implements Serializable{
-    String creator,system;
-    Data data;
-    String nome,classe,descricao;
-    int nivel;
-    List<Caracteristica> caracteristicas;
-    List<Item> inventory;
-    Hp life;
-    Resource resource;
-    Xp experiencia;
-
+    protected  String creator,system;
+    protected  Data data;
+    protected  CharacterInformation informacao;    
+    protected  int nivel;
+    protected  Hp life;
+    protected  Xp experiencia;
+    protected  List<Pagina> paginas;
+    protected  List<Recurso> recursos;
+    protected  List<Item> inventario;
+    /*
+    CONSTRUTORES
+    */
     public Ficha(){
-     this.creator="tiago mendes";
-     this.system="unknown";
-     caracteristicas=new ArrayList();
-     data=new Data(1,1,2016);
+     super();
+     creator="tiago mendes";
+     system="unknown";
+     data=new Data();
+     
+     informacao=new CharacterInformation("personagem","classe","descricao");
+     
+     life=new Hp("life",0,10);
+     experiencia=new Xp(0,10,0);
+     recursos=new ArrayList();
+     
+     paginas=new ArrayList();
+     paginas.add(new Pagina("pagina 1"));
+     
+     inventario=new ArrayList();
     }
     
     public Ficha(String creator, String system, Data data) {
@@ -44,44 +57,74 @@ public class Ficha implements Serializable{
      this();
      this.creator=r.creator;
      this.system=r.system;
-     this.data=r.data;
-     for(int i=0;i<r.inventory.size();i++)
-        this.inventory.add(new Item(r.inventory.get(i)));
-     for(int i=0;i<r.caracteristicas.size();i++)
-     {
-         Caracteristica temp =r.caracteristicas.get(i);
-         if (temp instanceof Atribute)
-            this.caracteristicas.add(new Atribute((Atribute)temp));
-         else
-             if (temp instanceof Habilidade)
-            this.caracteristicas.add(new Habilidade((Habilidade)temp));
-     }
-        
+     this.data=new Data(r.data);
+     this.life=new Hp(r.life);
+     this.experiencia=new Xp(r.experiencia);
+     this.informacao=new CharacterInformation(r.informacao);
+     for (Pagina paginaTemp:r.paginas)
+        this.paginas.add(new Pagina(paginaTemp));
+     for (Recurso recursoTemp:r.recursos)
+        this.recursos.add(new Recurso(recursoTemp));
+     for (Item itemTemp:r.inventario)
+        this.inventario.add(new Item(itemTemp));
     }
-
-
-    public void addCaracteristica(Caracteristica c) {
-     caracteristicas.add(c);
+    /*
+    Caracteristicas
+    */
+    public void addPage(String nome){
+        paginas.add(new Pagina(nome));
+        System.out.println("pagina \""+nome+"\" adicionada");
     }
-
-    public void removeCaracteristica(Caracteristica c) {
-        caracteristicas.remove(c);        
+    public void addCaracteristica(Caracteristica c,int p) {        
+        Pagina pagina=paginas.get(p);
+        pagina.add(c);
+    }
+    public void addRecurso(Recurso r){
+        recursos.add(r);
+    }
+    public void addItem(Item i){
+        inventario.add(i);
+    }
+    
+    /*
+    metodos que mexem com as operacoes de info
+    */
+    public CharacterInformation getInfo(){
+        return informacao;
+    }
+    public void addInfo(CharacterInformation c) {
+        this.informacao=new CharacterInformation(c);
     }
     @Override
     public String toString(){
         String string ="";
-        string  +="["+creator+","+system+"]\n"
-                +life+"\n"
-                +resource+"\n"
-                +experiencia+"\n"               
-                ;
-        for (int i=0;i<caracteristicas.size();i++){
-            string+=caracteristicas.get(i)+"\n";
-        }
-        for (int i=0;i<inventory.size();i++){
-            string+=inventory.get(i)+"\n";
-        }
-        return string;
+        string  +="["+creator+","+system+","+data+"]\n"
+                +" "+informacao+"\n"
+                +" "+experiencia+"\n" 
+                +" "+life+"\n";
+        for(Pagina p:paginas)
+            string+=" "+p+"\n";
+        
+        for (Recurso x:recursos)
+            string+=" "+x+"\n";
+        
+        for (Item x:inventario)
+            string+=" "+x+"\n";
+        return string;        
+    }
+
+    public List<Pagina> getPaginas() {
+        return paginas;
+    }
+    public Pagina getPagina(int index) {
+        return paginas.get(index);
+    }
+
+    public Iterable<Recurso> getResources() {
+        return recursos;
+    }
+    public Iterable<Item> getItems(){
+        return inventario;
     }
     
 }

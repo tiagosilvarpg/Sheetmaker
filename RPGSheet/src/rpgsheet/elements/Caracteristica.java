@@ -11,18 +11,14 @@ package rpgsheet.elements;
  * @author Tiago
  */
 abstract public class Caracteristica extends Element implements Escalavel{
- String label;
- int valor=0,maximo=5;
+ protected  String label;
+ protected  int valor=0,maximo=5;
  
     public Caracteristica(){
-        label="caracteristica";
-        valor=0;
-        maximo=5;
+        this("caracteristica",1,5);
     }
     public Caracteristica(Caracteristica i){
-        label=i.label;
-        valor=i.valor;
-        maximo=i.maximo;
+        this(i.label,i.valor,i.maximo);
     }
     public Caracteristica(String label,int valor,int maximo){
         this.label=label;

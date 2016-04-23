@@ -6,37 +6,37 @@
 
 package rpgsheet.elements;
 
-import rpgsheet.frames.AtributeClick;
 
 /**
  *
  * @author Tiago
  */
-public class Atribute extends Caracteristica{
-    static int increaseCost=2;
+public class Atributo extends Caracteristica{
+    protected  static int increaseCost=2;
+    protected String descricao;
     
-    public Atribute(String label,int valor,int maximo){
+    public Atributo(String label,int valor,int maximo,String descricao){
         super(label,valor,maximo);
+        this.descricao=descricao;
     }
-    public Atribute(){
+    public Atributo(){
         super("atributo",0,5);
+        this.descricao="nao fornecida";
     }
-    public Atribute(Atribute i){
-        super(i);        
+    public Atributo(Atributo i){
+        super(i);
+        this.descricao=i.descricao;
     }
     
     public void rename(String input){
         label=input;
     }
     @Override
-    public void click(){
-        AtributeClick frame = new AtributeClick();
-        frame.setVisible(true);  
-    }
-
-    @Override
     public String toString(){
         return (label+" "+valor+"/"+maximo);        
+    }
+    static void setCost(int i){
+        increaseCost=i;
     }
 
     

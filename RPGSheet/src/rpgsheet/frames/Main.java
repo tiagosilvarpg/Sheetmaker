@@ -6,6 +6,7 @@
 
 package rpgsheet.frames;
 
+import rpgsheet.elements.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,83 +21,120 @@ import rpgsheet.elements.*;
  */
 public class Main {
     static Ficha ficha;
-    static Janela frame;
+    static Janela mainFrame;
+    static int currentPage=0;
+    
     public static void main(String[] args) {
         
         ficha=new Ficha();
-        String resposta=JOptionPane.showInputDialog("o que quer fazer ?","(novo,exibir)");
-        if (resposta!=null){
-            if (resposta.equals("novo"))
-                    {
-                List<JTextPane>frame=new ArrayList();
-                frame.add(new JTextPane());
-                frame.add(new JTextPane());
-                frame.add(new JTextPane());
-                frame.add(new JTextPane());
-                JOptionPane.showInputDialog(frame);
-                //Main.ficha=new Ficha(frame.getComponent(0).toString(),frame.getComponent(1).toString(),new Data(Integer.parseInt(frame.getComponent(2).toString().trim())));
-            }
-        }
-        //frame =new Janela();
-        //frame.setVisible(true);        
+        mainFrame=new Janela();
+        mainFrame.setVisible(true);
+        load("Last");
     }
-    static void newFicha(){
-        String nome,sistema;        
-        nome = JOptionPane.showInputDialog("nome do personagem","personagem");
-        sistema = JOptionPane.showInputDialog("sistema","sistema");
-        ficha = new Ficha(nome,sistema,new Data(15,04,2016));
-        System.out.println(ficha);
-        refresh();
-    }
+    //METODOS DE SERIALIZACAO
     static void save(){//
          FileOutputStream arquivo;
          String filename;
-         filename = JOptionPane.showInputDialog("Digite um tamanho para a piramide","nome do arquivo");
+         filename = JOptionPane.showInputDialog("Digite o nome do arquivo","nome do arquivo");
          if (filename!=null)
          {
             try 
             {
-                arquivo = new FileOutputStream("C:\\Users\\Tiago\\Desktop\\"+filename+".ficha");
-                 try (ObjectOutputStream stream = new ObjectOutputStream(arquivo)) {
-                     stream.writeObject(ficha);
-                 }
-                System.out.println("Done");
-
+                new File("C:\\fichas\\").mkdir();
+                arquivo = new FileOutputStream("C:\\fichas\\"+filename+".ficha");
+                ObjectOutputStream stream = new ObjectOutputStream(arquivo);
+                stream.writeObject(ficha);
+                mainFrame.print(filename+".ficha salvo com sucesso");
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Ficha.class.getName()).log(Level.SEVERE, null, ex);
+                mainFrame.print("arquivo nao encontrado");
             } catch (IOException ex) {
-                Logger.getLogger(Ficha.class.getName()).log(Level.SEVERE, null, ex);
+                mainFrame.print("problema de entrada e saida");
             }
-         
          }
     }
-    static void refresh(){
-        frame.dispose();
-        frame=new Janela();
-        frame.setVisible(true);
-        System.out.println(ficha);
-        
+    static void load(){
+        load(null);
     }
-    
-    static void load() {//le uma ficha salva
-        FileInputStream finput = null;
-        String filename;
-         filename = JOptionPane.showInputDialog("Digite um tamanho para a piramide","nome do arquivo");
-         if (filename!=null)
+    static void load(String filename) {//le uma ficha salva
+         FileInputStream finput;
+         if (filename==null) filename = JOptionPane.showInputDialog("Digite o nome do arquivo a ser carregado","nome do arquivo");
          {
-            try {
-                finput = new FileInputStream("C:\\Users\\Tiago\\Desktop\\"+filename+".ficha");
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try (ObjectInputStream ois = new ObjectInputStream(finput)) {
+            try {             
+                finput = new FileInputStream("C:\\fichas\\"+filename+".ficha");
+                ObjectInputStream ois = new ObjectInputStream(finput);
+                
                 ficha = (Ficha) ois.readObject();
+                mainFrame.print(filename+" carregado com sucesso");
+                
+            } catch (FileNotFoundException ex) {
+                mainFrame.print("arquivo "+filename+" nao encontrado");
 
             } catch (IOException | ClassNotFoundException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+                mainFrame.print("arquivo "+filename+" nao pode ser lido,pode estar corrompido ou pertence a uma versao diferente");
+                mainFrame.print("usando ficha em branco");
+                ficha=new Ficha(); 
+            } catch (NullPointerException ex){
+                mainFrame.print("nome inserido invalido");
+                mainFrame.print("usando ficha em branco");
+                ficha=new Ficha(); 
+            } finally {
+                refresh();
+            }
+            
          }
-         refresh();
-    }    
+    }
+    static void refresh(){        
+        mainFrame.print(ficha.toString());
+        mainFrame.refresh();
+    }
+    static void newFicha(){
+        String nome,sistema;        
+        nome = JOptionPane.showInputDialog("criador","criador");
+        sistema = JOptionPane.showInputDialog("sistema","sistema");
+        ficha = new Ficha(nome,sistema,new Data());
+
+        refresh();
+    }
+    static void newItem() {
+        newItem frame=new newItem();
+        frame.setVisible(true);
+    }
+
+    static void newResource() {
+        newRecurso frame=new newRecurso();
+        frame.setVisible(true);        
+    }
+
+    static void newAtribute() {
+        newAtributo frame=new newAtributo();
+        System.out.println("Main abriu a janela");
+        frame.setVisible(true);
+    }
+    static void newInfo() {
+        newInfo frame=new newInfo(ficha.getInfo());
+        frame.setVisible(true);
+    }
+
+    static void diceRoll() {
+        RollDice frame=new RollDice();
+        frame.setVisible(true);
+    }
+    static void newPage(){
+        String name = JOptionPane.showInputDialog("titulo da pagina","pagina "+(ficha.getPaginas().size()+1));
+        if (name!=null)
+            ficha.addPage(name);
+        refresh();
+    }
+    static void setCurrentPage(int i){
+        if (i>=0)
+        {
+            Main.currentPage=i;
+        }
+        else
+            Main.currentPage=0;
+    }
+    static int getCurrentPage(){
+        return Main.currentPage;
+    }
 }
     
