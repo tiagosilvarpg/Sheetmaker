@@ -6,9 +6,11 @@
 
 package rpgsheet.frames;
 
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import rpgsheet.elements.*;
+import rpgsheet.elements.Vantagem;
+import java.awt.Dimension;
+import static rpgsheet.frames.Main.ficha;
 
 /**
  *
@@ -53,6 +55,8 @@ public class newVantagem extends javax.swing.JDialog  {
         nome = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        descricaoLabel1 = new javax.swing.JLabel();
+        valor1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -80,7 +84,7 @@ public class newVantagem extends javax.swing.JDialog  {
 
         jLabel1.setText("maximo");
 
-        nome.setText("habilidade");
+        nome.setText("Vantagem");
         nome.setToolTipText("");
 
         ok.setText("Add");
@@ -102,6 +106,11 @@ public class newVantagem extends javax.swing.JDialog  {
             }
         });
 
+        descricaoLabel1.setText("custo");
+
+        valor1.setText("1");
+        valor1.setToolTipText("");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -115,13 +124,18 @@ public class newVantagem extends javax.swing.JDialog  {
                             .addComponent(valorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nome)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(valor1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39)
                                 .addComponent(jLabel1)
-                                .addGap(16, 16, 16)
-                                .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nome)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(descricaoLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,31 +143,38 @@ public class newVantagem extends javax.swing.JDialog  {
                         .addComponent(cancel))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(descricaoLabel)
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valorLabel)
-                    .addComponent(jLabel1)
                     .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descricaoLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ok)
-                    .addComponent(cancel)))
+                    .addComponent(descricaoLabel1)
+                    .addComponent(valor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(descricaoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ok)
+                            .addComponent(cancel)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 28, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,11 +199,12 @@ public class newVantagem extends javax.swing.JDialog  {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // OK
+        int pagina=Main.getCurrentPage();
         String a=nome.getText();
         String d=descricao.getText();
         int v=Integer.parseInt(valor.getText());
         int m=Integer.parseInt(maximo.getText());
-        //ficha.addCaracteristica(new Habilidade(a,v,m,d));
+        ficha.addCaracteristica(new Vantagem(a,v,m,d),pagina);
         Main.refresh();
     }//GEN-LAST:event_okActionPerformed
 
@@ -236,6 +258,7 @@ public class newVantagem extends javax.swing.JDialog  {
     private javax.swing.JButton cancel;
     private javax.swing.JTextArea descricao;
     private javax.swing.JLabel descricaoLabel;
+    private javax.swing.JLabel descricaoLabel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -244,6 +267,11 @@ public class newVantagem extends javax.swing.JDialog  {
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JButton ok;
     private javax.swing.JTextField valor;
+    private javax.swing.JTextField valor1;
     private javax.swing.JLabel valorLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void getSelectedPage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

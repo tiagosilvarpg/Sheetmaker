@@ -6,6 +6,7 @@
 
 package rpgsheet.frames;
 
+import rpgsheet.elements.Vantagem;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import rpgsheet.elements.*;
@@ -179,11 +180,12 @@ public class newHabilidade extends javax.swing.JDialog  {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // OK
+        int pagina=Main.getCurrentPage();
         String a=nome.getText();
         String d=descricao.getText();
         int v=Integer.parseInt(valor.getText());
         int m=Integer.parseInt(maximo.getText());
-        //ficha.addCaracteristica(new Habilidade(a,v,m,d));
+        ficha.addCaracteristica(new Vantagem(a,v,m,d),pagina);  
         Main.refresh();
     }//GEN-LAST:event_okActionPerformed
 

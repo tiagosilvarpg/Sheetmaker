@@ -12,14 +12,7 @@ package rpgsheet.elements;
  */
 public class Habilidade extends Caracteristica{
     protected  static int increaseCost=1;
-    protected  String descricao;
     
-    public void setDescricao(String descricao){
-        this.descricao=descricao;
-    }
-    public String getDescricao(){
-        return descricao;
-    } 
     public Habilidade(String label,int valor,int maximo,String descricao){
         super(label,valor,maximo);
         this.descricao=descricao;
@@ -36,8 +29,22 @@ public class Habilidade extends Caracteristica{
     }
     @Override
     public String toString(){
-        return (label+" "+valor+"/"+maximo+" "+descricao);        
+        return (label+"\n "+valor+"/"+maximo);        
     }
-
+    public void increase(int incremento,int points){
+        if (valor+incremento>=0 && valor+incremento<=maximo)
+        {
+            if (points>=Habilidade.getCost())
+                valor+=incremento;
+            else System.out.println("sem pontos suficientes");                
+        }
+        else System.out.println("valor fora dos limites");
+    }
+    static void setCost(int i){
+        increaseCost=i;
+    }
+    static int getCost(){
+        return increaseCost;
+    }
     
 }

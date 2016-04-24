@@ -12,6 +12,6 @@ package rpgsheet.elements;
  */
 public interface Gerenciavel {
     
-    public void increase(int pontos);
+    public void increase(int incremento,int pontos);
     
 }

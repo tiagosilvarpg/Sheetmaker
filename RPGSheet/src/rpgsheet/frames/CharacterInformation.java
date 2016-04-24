@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package rpgsheet.elements;
+package rpgsheet.frames;
+
+import rpgsheet.elements.Element;
 
 /**
  *

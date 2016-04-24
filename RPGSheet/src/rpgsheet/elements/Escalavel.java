@@ -13,8 +13,7 @@ package rpgsheet.elements;
 public interface Escalavel {
     
     public int getValor();
-    public void setValor(int i);
+    public void setValor(int incremento);
     public int getMaximo();
-    public void setMaximo(int i);
-    
+    public void setMaximo(int incremento);    
 }

@@ -6,14 +6,11 @@
 
 package rpgsheet.frames;
 
+import rpgsheet.elements.Ficha;
 import rpgsheet.elements.Data;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.*;
 import javax.swing.*;
 
-import rpgsheet.elements.*;
 
 /**
  *
@@ -22,7 +19,6 @@ import rpgsheet.elements.*;
 public class Main {
     static Ficha ficha;
     static Janela mainFrame;
-    static int currentPage=0;
     
     public static void main(String[] args) {
         
@@ -44,11 +40,11 @@ public class Main {
                 arquivo = new FileOutputStream("C:\\fichas\\"+filename+".ficha");
                 ObjectOutputStream stream = new ObjectOutputStream(arquivo);
                 stream.writeObject(ficha);
-                mainFrame.print(filename+".ficha salvo com sucesso");
+               System.out.println(filename+".ficha salvo com sucesso");
             } catch (FileNotFoundException ex) {
-                mainFrame.print("arquivo nao encontrado");
+                System.out.println("arquivo nao encontrado");
             } catch (IOException ex) {
-                mainFrame.print("problema de entrada e saida");
+                System.out.println("problema de entrada e saida");
             }
          }
     }
@@ -64,18 +60,18 @@ public class Main {
                 ObjectInputStream ois = new ObjectInputStream(finput);
                 
                 ficha = (Ficha) ois.readObject();
-                mainFrame.print(filename+" carregado com sucesso");
+                System.out.println(filename+" carregado com sucesso");
                 
             } catch (FileNotFoundException ex) {
-                mainFrame.print("arquivo "+filename+" nao encontrado");
+                System.out.println("arquivo "+filename+" nao encontrado");
 
             } catch (IOException | ClassNotFoundException ex) {
-                mainFrame.print("arquivo "+filename+" nao pode ser lido,pode estar corrompido ou pertence a uma versao diferente");
-                mainFrame.print("usando ficha em branco");
+                System.out.println("arquivo "+filename+" nao pode ser lido,pode estar corrompido ou pertence a uma versao diferente");
+                System.out.println("usando ficha em branco");
                 ficha=new Ficha(); 
             } catch (NullPointerException ex){
-                mainFrame.print("nome inserido invalido");
-                mainFrame.print("usando ficha em branco");
+                System.out.println("nome inserido invalido");
+                System.out.println("usando ficha em branco");
                 ficha=new Ficha(); 
             } finally {
                 refresh();
@@ -84,7 +80,7 @@ public class Main {
          }
     }
     static void refresh(){        
-        mainFrame.print(ficha.toString());
+        System.out.println(ficha);
         mainFrame.refresh();
     }
     static void newFicha(){
@@ -92,31 +88,19 @@ public class Main {
         nome = JOptionPane.showInputDialog("criador","criador");
         sistema = JOptionPane.showInputDialog("sistema","sistema");
         ficha = new Ficha(nome,sistema,new Data());
-
         refresh();
     }
-    static void newItem() {
-        newItem frame=new newItem();
-        frame.setVisible(true);
-    }
-
-    static void newResource() {
-        newRecurso frame=new newRecurso();
-        frame.setVisible(true);        
-    }
-
-    static void newAtribute() {
-        newAtributo frame=new newAtributo();
-        System.out.println("Main abriu a janela");
-        frame.setVisible(true);
-    }
+    
     static void newInfo() {
         newInfo frame=new newInfo(ficha.getInfo());
         frame.setVisible(true);
     }
-
-    static void diceRoll() {
-        RollDice frame=new RollDice();
+    static void newResource() {
+        newRecurso frame=new newRecurso();
+        frame.setVisible(true);        
+    }
+    static void newItem() {
+        newItem frame=new newItem();
         frame.setVisible(true);
     }
     static void newPage(){
@@ -125,16 +109,45 @@ public class Main {
             ficha.addPage(name);
         refresh();
     }
-    static void setCurrentPage(int i){
-        if (i>=0)
-        {
-            Main.currentPage=i;
-        }
+    static void newAtribute() {
+        newAtributo frame=new newAtributo();
+        frame.setVisible(true);
+    }
+    static void newHability() {
+        newHabilidade frame=new newHabilidade();
+        frame.setVisible(true);
+    }
+    static void newAdvantage() {
+        newVantagem frame=new newVantagem();
+        frame.setVisible(true);
+    }
+    static void diceRoll() {
+        RollDice frame=new RollDice();
+        frame.setVisible(true);    
+    }
+
+    static void manageExperience() {
+        ManageExperience frame= new ManageExperience();
+        frame.setVisible(true);
+    }
+
+    static void renamePagina() {
+        int pagina=currentpage;
+        String text = JOptionPane.showInputDialog("Nome da pagina",Main.ficha.getPagina(pagina).getLabel());
+        if (text!=null)
+            Main.ficha.getPagina(pagina).setLabel(text);
         else
-            Main.currentPage=0;
+            System.out.println("nome invalido");
+        Main.refresh();
     }
-    static int getCurrentPage(){
-        return Main.currentPage;
+    static private int currentpage;
+    static public int getCurrentPage(){
+        currentpage= mainFrame.getCurrentPage();
+        return currentpage;
     }
+    static public void setCurrentPage(int i){
+        currentpage=i;
+    }
+
 }
     

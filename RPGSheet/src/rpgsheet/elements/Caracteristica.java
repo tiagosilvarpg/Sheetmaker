@@ -6,12 +6,16 @@
 
 package rpgsheet.elements;
 
+import rpgsheet.elements.Element;
+import rpgsheet.elements.Escalavel;
+import rpgsheet.elements.Gerenciavel;
+
 /**
  *
  * @author Tiago
  */
-abstract public class Caracteristica extends Element implements Escalavel{
- protected  String label;
+abstract public class Caracteristica extends Element implements Escalavel,Gerenciavel{
+ protected  String label,descricao;
  protected  int valor=0,maximo=5;
  
     public Caracteristica(){
@@ -32,6 +36,7 @@ abstract public class Caracteristica extends Element implements Escalavel{
          this.label=label;
      }
      
+ @Override
      public void setValor(int i){
          if (i>=0)
          valor=i;
@@ -40,6 +45,7 @@ abstract public class Caracteristica extends Element implements Escalavel{
      public int getValor(){
          return valor;
      }
+ @Override
      public void setMaximo(int i){
          if (i>0) maximo=i;
      }
@@ -47,4 +53,11 @@ abstract public class Caracteristica extends Element implements Escalavel{
      public int getMaximo(){
          return maximo;
      }
+
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao){
+        this.descricao=descricao;
+    }
 }

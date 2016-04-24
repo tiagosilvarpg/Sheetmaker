@@ -13,14 +13,13 @@ package rpgsheet.elements;
  */
 public class Atributo extends Caracteristica{
     protected  static int increaseCost=2;
-    protected String descricao;
     
     public Atributo(String label,int valor,int maximo,String descricao){
         super(label,valor,maximo);
         this.descricao=descricao;
     }
     public Atributo(){
-        super("atributo",0,5);
+        super("atributo",1,5);
         this.descricao="nao fornecida";
     }
     public Atributo(Atributo i){
@@ -31,12 +30,25 @@ public class Atributo extends Caracteristica{
     public void rename(String input){
         label=input;
     }
+    public void increase(int incremento,int points){
+        if (valor+incremento>=0 && valor+incremento<=maximo)
+        {
+            if (points>=Atributo.getCost())
+                valor+=incremento;
+            else System.out.println("sem pontos suficientes");                
+        }
+        else System.out.println("valor fora dos limites"); 
+            
+    }
     @Override
     public String toString(){
         return (label+" "+valor+"/"+maximo);        
     }
     static void setCost(int i){
         increaseCost=i;
+    }
+    static int getCost(){
+        return increaseCost;
     }
 
     

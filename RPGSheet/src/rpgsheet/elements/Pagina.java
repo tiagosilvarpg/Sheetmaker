@@ -50,6 +50,9 @@ public class Pagina implements Serializable{
     public String getLabel(){
          return label;
      }
+    public void setLabel(String nome){
+        this.label=nome;
+    }
     public Caracteristica getElement(int index){
          return caracteristica.get(index);
      }

@@ -6,8 +6,8 @@
 
 package rpgsheet.frames;
 
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -31,13 +31,22 @@ public class PagePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        PageText = new javax.swing.JTextArea();
+        ScrollPanel = new javax.swing.JScrollPane();
+        Panel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
-        PageText.setEditable(false);
-        PageText.setColumns(20);
-        PageText.setRows(5);
-        jScrollPane1.setViewportView(PageText);
+        ScrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        Panel.setBackground(new java.awt.Color(255, 255, 255));
+        Panel.setLayout(new javax.swing.BoxLayout(Panel, javax.swing.BoxLayout.Y_AXIS));
+        ScrollPanel.setViewportView(Panel);
+
+        jButton1.setText("Rename Page");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -45,25 +54,38 @@ public class PagePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(ScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 255, Short.MAX_VALUE))
+                    .addComponent(ScrollPanel))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Main.getCurrentPage();
+        Main.renamePagina();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea PageText;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel Panel;
+    private javax.swing.JScrollPane ScrollPanel;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
-    public JTextArea getTextPanel(){
-        return this.PageText;
+    public JPanel getTextPanel(){
+        return this.Panel;
     }
 }
 

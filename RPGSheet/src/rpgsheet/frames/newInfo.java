@@ -6,6 +6,7 @@
 
 package rpgsheet.frames;
 
+import rpgsheet.elements.Habilidade;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import rpgsheet.elements.*;

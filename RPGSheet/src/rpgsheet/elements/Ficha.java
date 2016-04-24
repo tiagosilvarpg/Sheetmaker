@@ -8,8 +8,9 @@ package rpgsheet.elements;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import rpgsheet.frames.CharacterInformation;
+;
 
 
 /**
@@ -76,8 +77,15 @@ public class Ficha implements Serializable{
         System.out.println("pagina \""+nome+"\" adicionada");
     }
     public void addCaracteristica(Caracteristica c,int p) {        
-        Pagina pagina=paginas.get(p);
-        pagina.add(c);
+        try{
+            Pagina pagina=paginas.get(p);
+            pagina.add(c);
+        }
+        catch(ArrayIndexOutOfBoundsException ex)
+        {
+            System.out.println("pagina nao existe");
+        }
+        
     }
     public void addRecurso(Recurso r){
         recursos.add(r);
@@ -102,15 +110,13 @@ public class Ficha implements Serializable{
                 +" "+informacao+"\n"
                 +" "+experiencia+"\n" 
                 +" "+life+"\n";
-        for(Pagina p:paginas)
-            string+=" "+p+"\n";
-        
         for (Recurso x:recursos)
-            string+=" "+x+"\n";
-        
+            string+=" "+x+"\n";        
         for (Item x:inventario)
             string+=" "+x+"\n";
-        return string;        
+        for(Pagina p:paginas)
+            string+=" "+p+"\n";
+        return string;       
     }
 
     public List<Pagina> getPaginas() {
@@ -125,6 +131,10 @@ public class Ficha implements Serializable{
     }
     public Iterable<Item> getItems(){
         return inventario;
+    }
+
+    public Xp getExperiencia() {
+        return experiencia;
     }
     
 }

@@ -35,7 +35,7 @@ public class Xp implements Gerenciavel,Serializable{
         return "experiencia "+total+"/"+proximoNivel+"("+pontos+")";
     }
     @Override
-    public void increase(int xp){
+    public void increase(int xp,int pontos){
         total+=xp;
         if (total>=proximoNivel) 
         {
@@ -46,6 +46,8 @@ public class Xp implements Gerenciavel,Serializable{
            while (temp<=proximoNivel);
            proximoNivel=temp;
         }
+        if (this.pontos+pontos>0)
+        this.pontos=+pontos;
     
     }
 }

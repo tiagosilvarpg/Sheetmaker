@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author Tiago
  */
-public class Recurso implements Escalavel,Serializable{
+public class Recurso implements Serializable{
      protected int valor,maximo;
      protected String label;
  public Recurso(){
@@ -34,22 +34,17 @@ public class Recurso implements Escalavel,Serializable{
  public String toString(){
      return label+" "+valor+"/"+maximo;
  }
- @Override
     public void setValor(int i){
          if (i>=0)
          valor=i;
-     }
- @Override
+    }
      public int getValor(){
          return valor;
      }
- @Override
      public void setMaximo(int i){
          if (i>0) maximo=i;
      }
- @Override
      public int getMaximo(){
          return maximo;
-     }
-    
+     }    
 }

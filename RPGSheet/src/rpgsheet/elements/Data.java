@@ -21,7 +21,7 @@ public class Data implements Serializable{
         year=i1;
     }
 
-    Data(Data data) {
+    public Data(Data data) {
         this.day=data.day;
         this.month=data.month;
         this.year=data.year;

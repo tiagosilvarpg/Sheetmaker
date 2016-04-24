@@ -24,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -64,15 +64,22 @@
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="valor" min="-2" pref="58" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="nome" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="valor1" min="-2" pref="58" max="-2" attributes="0"/>
+                                      <Component id="valor" min="-2" pref="58" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="maximo" min="-2" pref="61" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="nome" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="descricaoLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -82,7 +89,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="descricaoLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -93,7 +100,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nomeLabel" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="nome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -101,19 +108,29 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="valorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="valor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="maximo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="descricaoLabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ok" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="descricaoLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="valor1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="descricaoLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ok" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="83" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -174,7 +191,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="nome">
           <Properties>
-            <Property name="text" type="java.lang.String" value="habilidade"/>
+            <Property name="text" type="java.lang.String" value="Vantagem"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
@@ -194,6 +211,17 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="descricaoLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="custo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="valor1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="1"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

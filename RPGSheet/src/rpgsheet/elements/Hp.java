@@ -28,11 +28,9 @@ public class Hp extends Recurso {
     public String toString(){
         if (valor==maximo-1)
             modificador=modificadorDeSaude.ESCORIADO;
-        return label+" "+valor+"/"+maximo+"("+modificador+")";
+        return label+" "+valor+"/"+maximo+"("+modificador.getModificador()+")";
     }
 
     
 }
-enum modificadorDeSaude{
-    SAUDAVEL,ESCORIADO,MACHUCADO,FERIDO,FERIDO_GRAVEMENTE,ESPANCADO,ALEIJADO,INCAPACITADO
-};
+
