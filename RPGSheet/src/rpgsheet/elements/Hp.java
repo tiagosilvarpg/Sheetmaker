@@ -6,6 +6,8 @@
 
 package rpgsheet.elements;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Tiago
@@ -23,6 +25,12 @@ public abstract class Hp extends Recurso {
     @Override
     public String toString(){
         return label+" "+valor+"/"+maximo;
+    }
+    @Override
+    public void gastar(int i) {
+        valor-=i;
+        if (valor<0)
+            JOptionPane.showMessageDialog(null,"life under 0 check the rules for death");
     }
 
     

@@ -9,6 +9,7 @@ package rpgsheet.frames;
 import java.io.*;
 import javax.swing.*;
 import rpgsheet.elements.Caracteristica;
+import rpgsheet.elements.Dado;
 import rpgsheet.elements.Data;
 import rpgsheet.elements.Ficha;
 import rpgsheet.elements.MundoDasTrevas.FichaMundoDasTrevas;
@@ -22,12 +23,14 @@ import rpgsheet.elements.Recurso;
 public class Main {
     static Ficha ficha;
     static Janela mainFrame;
+    static Dado dado;
     
     public static void main(String[] args) {
         
         ficha=new FichaMundoDasTrevas();
         mainFrame=new Janela();
         mainFrame.setVisible(true);
+        dado= new Dado();
         load("Last");
     }
     //METODOS DE SERIALIZACAO
@@ -125,7 +128,7 @@ public class Main {
         frame.setVisible(true);
     }
     static void diceRoll() {
-        RollDice frame=new RollDice();
+        RollDice frame=new RollDice(dado);
         frame.setVisible(true);    
     }
 
@@ -155,7 +158,6 @@ public class Main {
     static void editCaracteristica(Caracteristica caracteristica) {
         CaracteristicaEdit frame=new CaracteristicaEdit(caracteristica);
         frame.setVisible(true);
-        //frame.setVisible(true);
     }
 
     static void removeCaracteristica(Caracteristica caracteristica) {        
@@ -163,11 +165,12 @@ public class Main {
     }
 
     static void removeRecurso(Recurso recurso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ficha.removeRecurso(recurso);
     }
 
     static void editRecurso(Recurso recurso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RecursoEdit frame=new RecursoEdit(recurso);
+        frame.setVisible(true);
     }
 
 }

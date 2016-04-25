@@ -14,13 +14,8 @@ import java.util.Calendar;
  * @author Tiago
  */
 public class Data implements Serializable{
-    int day,month,year;
-    public Data(int i, int i0, int i1) {
-        day=i;
-        month=i0;
-        year=i1;
-    }
-
+    private int day,month,year;
+    
     public Data(Data data) {
         this.day=data.day;
         this.month=data.month;
@@ -34,10 +29,7 @@ public class Data implements Serializable{
     public String getMonth(){
         String []temp=new String[]{"janeiro","fevereiro","marco","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
         return temp[month-1];
-    }
-    public Data(int i){
-        this(i/1000000,(i%100)/1000,i%1000);
-    }
+    }   
     @Override
     public String toString(){
         return day+" de "+getMonth()+" "+year;

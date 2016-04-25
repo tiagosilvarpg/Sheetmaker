@@ -15,11 +15,15 @@ public class Item {
     public Item(Item i){
         this(i.nome,i.descricao,i.quantidade);
     }
+    public Item(){
+        this("pedra","é uma pedra dã",1);
+    }
     public Item(String nome,String descricao, int quantidade){
         this.nome=nome;
         this.descricao=descricao;
         this.quantidade=quantidade;
     }
+    @Override
     public String toString(){
         return nome+" ("+quantidade+")";
     }

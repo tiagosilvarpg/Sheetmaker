@@ -10,15 +10,30 @@ package rpgsheet.elements;
  *
  * @author Tiago
  */
-public enum modificadorDeSaude{
-    SAUDAVEL(0),ESCORIADO(0),MACHUCADO(-1),FERIDO(-1),FERIDO_GRAVEMENTE(-2),ESPANCADO(-2),ALEIJADO(-2),INCAPACITADO(-5);
-    private final int modificador;
+public enum modificadorDeSaude {
+    SAUDAVEL(7,0,"saudavel"),ESCORIADO(6,0,"escoriado"),MACHUCADO(5,-1,"machucado"),FERIDO(4,-1,"ferido"),FERIDO_GRAVEMENTE(3,-2,"ferido gravemente"),ESPANCADO(2,-2,"espancado"),ALEIJADO(1,-2,"aleijado"),INCAPACITADO(0,-5,"incapacitado");
+
+    private final int modificador,ordem;
+    private final String nome;
     
-    modificadorDeSaude(int valor) {
+    modificadorDeSaude(int ordem1,int valor,String nome1) {
 		modificador=valor;
+                ordem=ordem1;
+                nome=nome1;
     }
-    public int getModificador(){
-        return modificador;
+    public static modificadorDeSaude getModificador(int i){
+        for (modificadorDeSaude m: modificadorDeSaude.values())
+        {
+            if (m.ordem==(i))
+                {
+                    return m;
+                }
+        }
+        return null;
     }
-    
+    @Override
+    public String toString(){
+    return (nome+" "+modificador);
+        
+    }
 }

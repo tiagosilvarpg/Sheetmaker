@@ -162,5 +162,12 @@ public abstract class Ficha implements Serializable{
     public int getPontos() {
         return experiencia.getPontos();    
     }
+
+    public void removeRecurso(Recurso recurso) {
+        recursos.remove(recurso);
+    }
+    public Hp getLife(){
+        return life;
+    }
     
 }

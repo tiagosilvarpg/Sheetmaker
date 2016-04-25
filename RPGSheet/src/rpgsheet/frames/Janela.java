@@ -576,6 +576,8 @@ public class Janela extends javax.swing.JFrame {
             ResouceClick botao=new ResouceClick(r);            
             ResoursesButtonsPanel.add(botao);
         }
+        ResouceClick botao=new ResouceClick(Main.ficha.getLife());            
+        ResoursesButtonsPanel.add(botao);
         
     }
     private void loadCaracteristicas() {

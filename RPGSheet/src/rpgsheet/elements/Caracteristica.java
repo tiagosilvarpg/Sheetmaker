@@ -60,4 +60,8 @@ abstract public class Caracteristica extends Elemento implements Serializable,Es
     }
  @Override
     public abstract boolean upgrade(Xp experiencia);
+     @Override
+    public String toString(){
+        return (label+" "+valor+"/"+maximo);        
+    }
 }

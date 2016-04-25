@@ -6,6 +6,7 @@
 
 package rpgsheet.elements.DungeonsAndDragons;
 
+import javax.swing.JOptionPane;
 import rpgsheet.elements.Hp;
 
 /**
@@ -22,6 +23,14 @@ public class HpDungeonsAndDragons extends Hp {
     }
     public HpDungeonsAndDragons(HpDungeonsAndDragons h){
         super(h);
+    }
+    @Override
+    public void gastar(int i) {
+        valor-=i;
+        if (valor<(-maximo))
+            JOptionPane.showMessageDialog(null,"instant death");
+        else if (valor<0)
+            JOptionPane.showMessageDialog(null,"inconcient roll a dead dice");
     }
     
 }

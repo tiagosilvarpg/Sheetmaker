@@ -6,6 +6,7 @@
 
 package rpgsheet.elements._3DeT;
 
+import javax.swing.JOptionPane;
 import rpgsheet.elements.Hp;
 
 /**
@@ -22,6 +23,12 @@ public class Hp3DeT extends Hp {
     }
     public Hp3DeT(Hp3DeT h) {
         super(h);
+    }
+    @Override
+    public void gastar(int i) {
+        valor-=i;
+        if (valor<0)
+            JOptionPane.showMessageDialog(null,"life under 0, roll de death dice");
     }
     
 }

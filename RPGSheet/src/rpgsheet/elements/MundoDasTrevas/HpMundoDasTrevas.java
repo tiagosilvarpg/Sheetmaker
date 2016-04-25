@@ -6,6 +6,7 @@
 
 package rpgsheet.elements.MundoDasTrevas;
 
+import javax.swing.JOptionPane;
 import rpgsheet.elements.Hp;
 import rpgsheet.elements.modificadorDeSaude;
 
@@ -14,26 +15,26 @@ import rpgsheet.elements.modificadorDeSaude;
  * @author Tiago
  */
 public class HpMundoDasTrevas extends Hp {
-    private modificadorDeSaude modificador;
     int agravado;
 
     public HpMundoDasTrevas() {
-        super("Vitalidade",7,7);
-        modificador=modificadorDeSaude.SAUDAVEL;
+        super("Vitalidade",0,7);
     }
     public HpMundoDasTrevas(String nome,int i0,int i1) {
         super(nome,i0,i1);
-        modificador=modificadorDeSaude.SAUDAVEL;
     }
     public HpMundoDasTrevas(HpMundoDasTrevas h) {
         super(h);
-        modificador=modificadorDeSaude.SAUDAVEL;
     }
     @Override
     public String toString(){
-        if (valor==maximo-1)
-            modificador=modificadorDeSaude.ESCORIADO;
-        return label+" "+valor+"("+agravado+")"+"/"+maximo+"("+modificador.getModificador()+")";
+        return label+" "+valor+"("+agravado+")"+"/"+maximo+"("+modificadorDeSaude.getModificador(valor)+")";
+    }
+    @Override
+    public void gastar(int i) {
+        valor-=i;
+        if (valor<0)
+            JOptionPane.showMessageDialog(null,"life under 0 check the rules for death");
     }
     
 }

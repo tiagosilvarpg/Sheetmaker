@@ -7,6 +7,7 @@
 package rpgsheet.elements;
 
 import java.io.Serializable;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,8 +36,10 @@ public class Recurso implements Serializable{
      return label+" "+valor+"/"+maximo;
  }
     public void setValor(int i){
-         if (i>=0)
-         valor=i;
+        if (i>=0)
+            valor=i;
+        if(valor>maximo)
+            valor=maximo;
     }
      public int getValor(){
          return valor;
@@ -46,5 +49,15 @@ public class Recurso implements Serializable{
      }
      public int getMaximo(){
          return maximo;
-     }    
+     }
+    public void gastar(int i) {
+        System.out.println(valor+" "+maximo+" "+i);   
+        if (valor>=i)
+        {
+            valor-=i;
+        }
+        else
+            JOptionPane.showMessageDialog(null,"not enough "+label);
+        
+    }
 }

@@ -10,16 +10,24 @@ package rpgsheet.elements;
  *
  * @author Tiago
  */
-public class Elemento {
+public abstract class Elemento {
    protected  String label,descricao;
    
    public Elemento(String label,String descricao){
        this.label=label;
        this.descricao=descricao;
        
-   }public Elemento(){
+   }
+   public Elemento(Elemento e){
+       this(e.label,e.descricao);       
+   }
+   public Elemento(){
        this("Elemento","Descricao");
    }
+   @Override
+    public String toString(){
+        return (label+" \""+descricao+"\"");        
+    }
    
     
 }
