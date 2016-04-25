@@ -6,18 +6,16 @@
 
 package rpgsheet.elements;
 
-import rpgsheet.elements.Element;
-import rpgsheet.elements.Escalavel;
-import rpgsheet.elements.Gerenciavel;
+
+import java.io.Serializable;
+import rpgsheet.elements.interfaces.*;
 
 /**
  *
  * @author Tiago
  */
-abstract public class Caracteristica extends Element implements Escalavel,Gerenciavel{
- protected  String label,descricao;
- protected  int valor=0,maximo=5;
- 
+abstract public class Caracteristica extends Elemento implements Serializable,Escalavel,Melhoravel{ 
+ protected  int valor=0,maximo=5; 
     public Caracteristica(){
         this("caracteristica",1,5);
     }
@@ -25,7 +23,7 @@ abstract public class Caracteristica extends Element implements Escalavel,Gerenc
         this(i.label,i.valor,i.maximo);
     }
     public Caracteristica(String label,int valor,int maximo){
-        this.label=label;
+        super(label,"descricao");
         this.valor=valor;
         this.maximo=maximo;
     } 
@@ -60,4 +58,6 @@ abstract public class Caracteristica extends Element implements Escalavel,Gerenc
     public void setDescricao(String descricao){
         this.descricao=descricao;
     }
+ @Override
+    public abstract boolean upgrade(Xp experiencia);
 }

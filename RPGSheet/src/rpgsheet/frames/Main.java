@@ -6,10 +6,13 @@
 
 package rpgsheet.frames;
 
-import rpgsheet.elements.Ficha;
-import rpgsheet.elements.Data;
 import java.io.*;
 import javax.swing.*;
+import rpgsheet.elements.Caracteristica;
+import rpgsheet.elements.Data;
+import rpgsheet.elements.Ficha;
+import rpgsheet.elements.MundoDasTrevas.FichaMundoDasTrevas;
+import rpgsheet.elements.Recurso;
 
 
 /**
@@ -22,7 +25,7 @@ public class Main {
     
     public static void main(String[] args) {
         
-        ficha=new Ficha();
+        ficha=new FichaMundoDasTrevas();
         mainFrame=new Janela();
         mainFrame.setVisible(true);
         load("Last");
@@ -68,11 +71,11 @@ public class Main {
             } catch (IOException | ClassNotFoundException ex) {
                 System.out.println("arquivo "+filename+" nao pode ser lido,pode estar corrompido ou pertence a uma versao diferente");
                 System.out.println("usando ficha em branco");
-                ficha=new Ficha(); 
+                ficha=new FichaMundoDasTrevas(); 
             } catch (NullPointerException ex){
                 System.out.println("nome inserido invalido");
                 System.out.println("usando ficha em branco");
-                ficha=new Ficha(); 
+                ficha=new FichaMundoDasTrevas(); 
             } finally {
                 refresh();
             }
@@ -87,7 +90,7 @@ public class Main {
         String nome,sistema;        
         nome = JOptionPane.showInputDialog("criador","criador");
         sistema = JOptionPane.showInputDialog("sistema","sistema");
-        ficha = new Ficha(nome,sistema,new Data());
+        ficha = new FichaMundoDasTrevas(nome,sistema,new Data());
         refresh();
     }
     
@@ -127,7 +130,7 @@ public class Main {
     }
 
     static void manageExperience() {
-        ManageExperience frame= new ManageExperience();
+        ManageExperience frame= new ManageExperience(ficha.getExperiencia());
         frame.setVisible(true);
     }
 
@@ -147,6 +150,24 @@ public class Main {
     }
     static public void setCurrentPage(int i){
         currentpage=i;
+    }
+
+    static void editCaracteristica(Caracteristica caracteristica) {
+        CaracteristicaEdit frame=new CaracteristicaEdit(caracteristica);
+        frame.setVisible(true);
+        //frame.setVisible(true);
+    }
+
+    static void removeCaracteristica(Caracteristica caracteristica) {        
+        ficha.removeCaracteristica(caracteristica,getCurrentPage());
+    }
+
+    static void removeRecurso(Recurso recurso) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    static void editRecurso(Recurso recurso) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

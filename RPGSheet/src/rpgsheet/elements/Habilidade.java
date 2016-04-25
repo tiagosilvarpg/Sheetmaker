@@ -31,20 +31,26 @@ public class Habilidade extends Caracteristica{
     public String toString(){
         return (label+"\n "+valor+"/"+maximo);        
     }
-    public void increase(int incremento,int points){
-        if (valor+incremento>=0 && valor+incremento<=maximo)
-        {
-            if (points>=Habilidade.getCost())
-                valor+=incremento;
-            else System.out.println("sem pontos suficientes");                
-        }
-        else System.out.println("valor fora dos limites");
-    }
     static void setCost(int i){
         increaseCost=i;
     }
     static int getCost(){
         return increaseCost;
+    }
+
+    @Override
+    public boolean upgrade(Xp experiencia) {
+         if (valor+1>=0 && valor+1<=maximo)
+        {
+            if (experiencia.getPontos()>=Habilidade.getCost())
+            {
+                valor+=1;
+                return true;
+            }
+            else System.out.println("sem pontos suficientes");                
+        }
+        else System.out.println("valor fora dos limites");
+        return false;
     }
     
 }

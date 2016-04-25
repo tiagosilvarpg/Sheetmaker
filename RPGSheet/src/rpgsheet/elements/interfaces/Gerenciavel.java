@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package rpgsheet.elements;
+package rpgsheet.elements.interfaces;
 
 /**
  *
@@ -12,6 +12,6 @@ package rpgsheet.elements;
  */
 public interface Gerenciavel {
     
-    public void increase(int incremento,int pontos);
+   public void increase(int incremento);
     
 }

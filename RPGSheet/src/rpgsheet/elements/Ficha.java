@@ -9,6 +9,11 @@ package rpgsheet.elements;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import rpgsheet.elements.DungeonsAndDragons.HpDungeonsAndDragons;
+import rpgsheet.elements.DungeonsAndDragons.XpDungeonsAndDragons;
+import rpgsheet.elements.MundoDasTrevas.HpMundoDasTrevas;
+import rpgsheet.elements.MundoDasTrevas.XpMundoDasTrevas;
+import rpgsheet.elements._3DeT.*;
 import rpgsheet.frames.CharacterInformation;
 ;
 
@@ -17,11 +22,10 @@ import rpgsheet.frames.CharacterInformation;
  *
  * @author Tiago
  */
-public class Ficha implements Serializable{
+public abstract class Ficha implements Serializable{
     protected  String creator,system;
     protected  Data data;
     protected  CharacterInformation informacao;    
-    protected  int nivel;
     protected  Hp life;
     protected  Xp experiencia;
     protected  List<Pagina> paginas;
@@ -34,17 +38,12 @@ public class Ficha implements Serializable{
      super();
      creator="tiago mendes";
      system="unknown";
-     data=new Data();
-     
-     informacao=new CharacterInformation("personagem","classe","descricao");
-     
-     life=new Hp("life",0,10);
-     experiencia=new Xp(0,10,0);
-     recursos=new ArrayList();
-     
-     paginas=new ArrayList();
-     paginas.add(new Pagina("pagina 1"));
-     
+     data=new Data();     
+     informacao=new CharacterInformation("personagem","classe","descricao");     
+     life=new Hp3DeT();
+     experiencia=new Xp3DeT();
+     recursos=new ArrayList();     
+     paginas=new ArrayList();     
      inventario=new ArrayList();
     }
     
@@ -56,11 +55,30 @@ public class Ficha implements Serializable{
     }
     public Ficha(Ficha r){
      this();
+     //copia as informacoes do criador
      this.creator=r.creator;
      this.system=r.system;
      this.data=new Data(r.data);
-     this.life=new Hp(r.life);
-     this.experiencia=new Xp(r.experiencia);
+     //COPIA O HP
+     if (r.life instanceof Hp3DeT)
+        this.life=new Hp3DeT((Hp3DeT)r.life);
+     else
+        if (r.life instanceof HpDungeonsAndDragons)
+            this.life=new HpDungeonsAndDragons((HpDungeonsAndDragons)r.life);
+        else
+            if (r.life instanceof HpMundoDasTrevas)
+                this.life=new HpMundoDasTrevas((HpMundoDasTrevas)r.life);
+     //COPIA O XP
+     if (r.experiencia instanceof XpMundoDasTrevas)
+        this.experiencia=new XpMundoDasTrevas((XpMundoDasTrevas)r.experiencia);
+     else
+        if (r.experiencia instanceof Xp3DeT)
+            this.experiencia=new Xp3DeT((Xp3DeT)r.experiencia);
+        else 
+            if (r.experiencia instanceof XpDungeonsAndDragons)
+                this.experiencia=new XpDungeonsAndDragons((XpDungeonsAndDragons)r.experiencia);
+     
+     //COPIA INFORMACOS DO PERSONAGEM
      this.informacao=new CharacterInformation(r.informacao);
      for (Pagina paginaTemp:r.paginas)
         this.paginas.add(new Pagina(paginaTemp));
@@ -135,6 +153,14 @@ public class Ficha implements Serializable{
 
     public Xp getExperiencia() {
         return experiencia;
+    }
+
+    public void removeCaracteristica(Caracteristica caracteristica,int  i) {
+        paginas.get(i).remove(caracteristica);
+    }
+
+    public int getPontos() {
+        return experiencia.getPontos();    
     }
     
 }

@@ -10,25 +10,19 @@ package rpgsheet.elements;
  *
  * @author Tiago
  */
-public class Hp extends Recurso {
+public abstract class Hp extends Recurso {
     //0,0,1,1,2,2,5
-    protected modificadorDeSaude modificador;
-    public Hp(){
-        modificador=modificadorDeSaude.SAUDAVEL;
+    public Hp(){       
     }
     public Hp(String label,int valor,int maximo){
-        super(label,valor,maximo);
-        modificador=modificadorDeSaude.SAUDAVEL;
+        super(label,valor,maximo);        
     }
     public Hp(Hp outro){
-        super(outro.label,outro.valor,outro.maximo);
-        modificador=modificadorDeSaude.SAUDAVEL;
+        super(outro.label,outro.valor,outro.maximo);        
     }
     @Override
     public String toString(){
-        if (valor==maximo-1)
-            modificador=modificadorDeSaude.ESCORIADO;
-        return label+" "+valor+"/"+maximo+"("+modificador.getModificador()+")";
+        return label+" "+valor+"/"+maximo;
     }
 
     

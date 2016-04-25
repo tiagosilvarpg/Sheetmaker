@@ -6,6 +6,7 @@
 
 package rpgsheet.elements;
 
+import rpgsheet.elements.interfaces.Gerenciavel;
 import java.io.Serializable;
 import javax.swing.JOptionPane;
 
@@ -13,14 +14,14 @@ import javax.swing.JOptionPane;
  *
  * @author Tiago
  */
-public class Xp implements Gerenciavel,Serializable{
+public abstract class Xp implements Gerenciavel,Serializable{
     protected int total,proximoNivel,pontos;
     
     public Xp (int total,int proximoNivel,int pontos){
         super();
-        this.total=total;
-        this.proximoNivel=proximoNivel;
-        this.pontos=pontos;
+        this.total=total>0 ? total : 0 ;
+        this.proximoNivel=proximoNivel >0 ? total : 0;
+        this.pontos=pontos>0 ? total : 0;
     }
     public Xp(){
         this(0,10,0);
@@ -35,19 +36,27 @@ public class Xp implements Gerenciavel,Serializable{
         return "experiencia "+total+"/"+proximoNivel+"("+pontos+")";
     }
     @Override
-    public void increase(int xp,int pontos){
-        total+=xp;
-        if (total>=proximoNivel) 
-        {
-           int temp;
-           do {
-               temp=Integer.parseInt((JOptionPane.showInputDialog("total de xp para o proximo nivel",proximoNivel)).trim());
-           }
-           while (temp<=proximoNivel);
-           proximoNivel=temp;
-        }
-        if (this.pontos+pontos>0)
-        this.pontos=+pontos;
-    
+    abstract public void increase(int xp);
+
+    int getPontos() {
+        return this.pontos;
+    }
+
+    public void setTotal(int i) {
+        total=(i>0)
+            ? i
+            :0;
+    }
+    public void setProximoNivel(int i) {
+        proximoNivel=(i>total)
+            ? i
+            :total+1;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+    public int getProximoNivel() {
+        return proximoNivel;
     }
 }

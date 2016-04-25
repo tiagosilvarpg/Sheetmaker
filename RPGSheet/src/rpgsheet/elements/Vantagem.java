@@ -12,7 +12,6 @@ package rpgsheet.elements;
  */
 public class Vantagem extends Caracteristica{
     protected  static int increaseCost=2;
-    protected  String descricao;
     
     public Vantagem(String label,int valor,int maximo,String descricao){
         super(label,valor,maximo);
@@ -32,20 +31,27 @@ public class Vantagem extends Caracteristica{
     public String toString(){
         return (label+"\n "+valor+"/"+maximo);        
     }
-    public void increase(int incremento,int points){
-        if (valor+incremento>=0 && valor+incremento<=maximo)
-        {
-            if (points>=Vantagem.getCost())
-                valor+=incremento;
-            else System.out.println("sem pontos suficientes");                
-        }
-        else System.out.println("valor fora dos limites");
-    }
     static void setCost(int i){
         increaseCost=i;
     }
     static int getCost(){
         return increaseCost;
+    }
+
+    
+    @Override
+    public boolean upgrade(Xp experiencia) {
+         if (valor+1>=0 && valor+1<=maximo)
+        {
+            if (experiencia.getPontos()>=Vantagem.getCost())
+            {
+                valor+=1;
+                return true;
+            }
+            else System.out.println("sem pontos suficientes");                
+        }
+        else System.out.println("valor fora dos limites");
+        return false;
     }
 
     

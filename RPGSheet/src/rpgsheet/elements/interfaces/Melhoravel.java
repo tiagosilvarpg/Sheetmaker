@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 
-package rpgsheet.elements;
+package rpgsheet.elements.interfaces;
 
-import java.io.Serializable;
+import rpgsheet.elements.Xp;
 
 /**
  *
  * @author Tiago
  */
-public abstract class Element implements Serializable{
+public interface Melhoravel {
+    
+    public abstract boolean upgrade(Xp experiencia);
     
 }

@@ -6,13 +6,13 @@
 
 package rpgsheet.frames;
 
-import rpgsheet.elements.Element;
+import rpgsheet.elements.Elemento;
 
 /**
  *
  * @author Tiago
  */
-public class CharacterInformation extends Element{
+public class CharacterInformation{
     protected String nome,classe,descricao;
     
     public CharacterInformation(){
@@ -37,6 +37,7 @@ public class CharacterInformation extends Element{
      public String getDescricao(){
         return descricao;
     }
+    @Override
     public String toString(){
         return "Nome: "+nome+"\nClasse: "+classe+"\nDescricao:\n"+descricao;
     }

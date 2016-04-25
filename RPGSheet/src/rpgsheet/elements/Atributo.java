@@ -30,16 +30,7 @@ public class Atributo extends Caracteristica{
     public void rename(String input){
         label=input;
     }
-    public void increase(int incremento,int points){
-        if (valor+incremento>=0 && valor+incremento<=maximo)
-        {
-            if (points>=Atributo.getCost())
-                valor+=incremento;
-            else System.out.println("sem pontos suficientes");                
-        }
-        else System.out.println("valor fora dos limites"); 
-            
-    }
+    
     @Override
     public String toString(){
         return (label+" "+valor+"/"+maximo);        
@@ -49,6 +40,21 @@ public class Atributo extends Caracteristica{
     }
     static int getCost(){
         return increaseCost;
+    }
+    @Override
+    public boolean upgrade(Xp experiencia){
+        if (valor+1>=0 && valor+1<=maximo)
+        {
+            if (experiencia.getPontos()>=Atributo.getCost())
+            {
+                valor+=1;
+                experiencia.pontos-=1;
+                return true;
+            }
+            else System.out.println("sem pontos suficientes");                
+        }
+        else System.out.println("valor fora dos limites");
+        return false;
     }
 
     
