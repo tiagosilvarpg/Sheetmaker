@@ -78,7 +78,6 @@ public class ButtonCaracteristica extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables

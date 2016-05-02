@@ -5,11 +5,13 @@
  */
 package rpgsheet.elements;
 
+import java.io.Serializable;
+
 /**
  *
  * @author FACOMP
  */
-public class Item {
+public class Item implements Serializable{
     protected String nome,descricao;
     protected int quantidade;
     

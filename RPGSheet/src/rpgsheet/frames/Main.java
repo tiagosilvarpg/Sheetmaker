@@ -15,6 +15,7 @@ import rpgsheet.elements.Ficha;
 import rpgsheet.elements.Item;
 import rpgsheet.elements.MundoDasTrevas.FichaMundoDasTrevas;
 import rpgsheet.elements.Recurso;
+import rpgsheet.elements.Vantagem;
 
 
 /**
@@ -137,8 +138,15 @@ public class Main {
     }
 
     static void editCaracteristica(Caracteristica caracteristica) {
-        EditCaracteristica frame=new EditCaracteristica((Atributo)caracteristica);
-        frame.setVisible(true);
+        if (caracteristica instanceof Atributo){
+            EditCaracteristica frame=new EditCaracteristica((Atributo)caracteristica);
+            frame.setVisible(true);
+       }
+        if (caracteristica instanceof Vantagem){
+            EditVantagem frame=new EditVantagem((Vantagem)caracteristica);
+            frame.setVisible(true);
+        }
+        
     }
 
     static void removeCaracteristica(Caracteristica caracteristica) {        
@@ -173,6 +181,10 @@ public class Main {
     static void newVantagem() {
         NewVantagem frame=new NewVantagem();
         frame.setVisible(true);
+    }
+
+    static void editVantagem(Caracteristica caracteristica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
