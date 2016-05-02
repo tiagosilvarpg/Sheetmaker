@@ -15,15 +15,15 @@ import rpgsheet.elements.modificadorDeSaude;
  * @author Tiago
  */
 public class HpMundoDasTrevas extends Hp {
-    int agravado;
-
+    protected int agravado;
+    protected final static int VALOR_MAXIMO_PADRAO=7;
     public HpMundoDasTrevas() {
-        super("Vitalidade",0,7);
+        super("Vitalidade",VALOR_MAXIMO_PADRAO,VALOR_MAXIMO_PADRAO);
     }
     public HpMundoDasTrevas(String nome,int i0,int i1) {
         super(nome,i0,i1);
     }
-    public HpMundoDasTrevas(HpMundoDasTrevas h) {
+    public HpMundoDasTrevas(final HpMundoDasTrevas h) {
         super(h);
     }
     @Override
@@ -32,9 +32,14 @@ public class HpMundoDasTrevas extends Hp {
     }
     @Override
     public void gastar(int i) {
-        valor-=i;
-        if (valor<0)
-            JOptionPane.showMessageDialog(null,"life under 0 check the rules for death");
+        if (i>0){
+            if (JOptionPane.showConfirmDialog(null,"agravated ?")==JOptionPane.OK_OPTION)
+                agravado+=i;
+            valor-=i;
+            if (valor<0)
+                JOptionPane.showMessageDialog(null,"life under 0,you cant act until you heal");
+        }
+        else valor-=i;
     }
     
 }

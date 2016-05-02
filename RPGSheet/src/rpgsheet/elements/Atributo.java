@@ -6,56 +6,94 @@
 
 package rpgsheet.elements;
 
+import Exceptions.MaximumReached;
+import Exceptions.NoPoints;
+import rpgsheet.elements.interfaces.Escalavel;
+import rpgsheet.elements.interfaces.Melhoravel;
 
 /**
  *
  * @author Tiago
  */
-public class Atributo extends Caracteristica{
-    protected  static int increaseCost=2;
-    
-    public Atributo(String label,int valor,int maximo,String descricao){
-        super(label,valor,maximo);
-        this.descricao=descricao;
+public class Atributo extends Caracteristica implements Escalavel,Melhoravel{    
+    protected final static int VALOR_MAXIMO_PADRAO=5;
+    protected  int valor=0,maximo=5;
+    protected int custo;
+    public Atributo(String label,int valor,int maximo,String descricao,int custo){
+        super(label,descricao);
+        this.valor=valor>0?valor:0;
+        this.maximo=maximo>0?maximo:5;      
+        this.custo=custo>0?custo:1;
     }
     public Atributo(){
-        super("atributo",1,5);
-        this.descricao="nao fornecida";
+        super("Atributo","Descricao do atributo");
+        valor=0;
+        maximo=VALOR_MAXIMO_PADRAO;
+        custo=1;
     }
-    public Atributo(Atributo i){
+    public Atributo(final Atributo i){
         super(i);
-        this.descricao=i.descricao;
+        valor=i.valor;
+        maximo=i.maximo;
+        custo=i.custo;
     }
     
     public void rename(String input){
         label=input;
     }
-    
+    @Override
+    public boolean equals(final Atributo o)
+    {
+        if (valor==o.valor)
+            if (maximo==o.maximo)
+                if (label.equals(o.label))
+                    return true;
+        return false;
+    }    
+    @Override
+    public int compareTo(final Caracteristica o) {
+        if (o instanceof Atributo){
+             if (valor<((Atributo)o).valor) return -1;
+             if (valor==((Atributo)o).valor) return -1*(label.compareTo(o.label));             
+        }
+        return 1;
+       
+    }
     @Override
     public String toString(){
         return (label+" "+valor+"/"+maximo);        
-    }
-    static void setCost(int i){
-        increaseCost=i;
-    }
-    static int getCost(){
-        return increaseCost;
-    }
+    }    
     @Override
-    public boolean upgrade(Xp experiencia){
+    public void upgrade(final Xp experiencia) throws MaximumReached,NoPoints{
         if (valor+1>=0 && valor+1<=maximo)
         {
-            if (experiencia.getPontos()>=Atributo.getCost())
+            if (experiencia.getPontos()>=1)
             {
                 valor+=1;
-                experiencia.pontos-=1;
-                return true;
+                experiencia.pontos-=custo;                
             }
-            else System.out.println("sem pontos suficientes");                
+            else throw new NoPoints();
         }
-        else System.out.println("valor fora dos limites");
-        return false;
+        else throw new MaximumReached();
     }
-
-    
+    public int getCost(){
+        return custo;
+    }
+    @Override
+     public void setValor(int i){
+         if (0<i && i<maximo) valor=i;
+     }
+    @Override
+     public int getValor(){
+         return valor;
+     }
+    @Override
+     public void setMaximo(int i){
+         if (i> valor) maximo=i;
+     }
+    @Override
+     public int getMaximo(){
+         return maximo;
+     }
+   
 }

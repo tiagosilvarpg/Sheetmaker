@@ -14,7 +14,6 @@ import rpgsheet.elements.DungeonsAndDragons.XpDungeonsAndDragons;
 import rpgsheet.elements.MundoDasTrevas.HpMundoDasTrevas;
 import rpgsheet.elements.MundoDasTrevas.XpMundoDasTrevas;
 import rpgsheet.elements._3DeT.*;
-import rpgsheet.frames.CharacterInformation;
 ;
 
 
@@ -49,11 +48,11 @@ public abstract class Ficha implements Serializable{
     
     public Ficha(String creator, String system, Data data) {
      this();
-     this.creator=creator;
-     this.system=system;
+     this.creator=(creator==null)?"tiago mendes":creator;
+     this.system=(system==null)?"tiago mendes":system;
      this.data=data;        
     }
-    public Ficha(Ficha r){
+    public Ficha(final Ficha r){
      this();
      //copia as informacoes do criador
      this.creator=r.creator;
@@ -78,7 +77,6 @@ public abstract class Ficha implements Serializable{
             if (r.experiencia instanceof XpDungeonsAndDragons)
                 this.experiencia=new XpDungeonsAndDragons((XpDungeonsAndDragons)r.experiencia);
      
-     //COPIA INFORMACOS DO PERSONAGEM
      this.informacao=new CharacterInformation(r.informacao);
      for (Pagina paginaTemp:r.paginas)
         this.paginas.add(new Pagina(paginaTemp));
@@ -92,9 +90,8 @@ public abstract class Ficha implements Serializable{
     */
     public void addPage(String nome){
         paginas.add(new Pagina(nome));
-        System.out.println("pagina \""+nome+"\" adicionada");
     }
-    public void addCaracteristica(Caracteristica c,int p) {        
+    public void addCaracteristica(final Caracteristica c,int p) {        
         try{
             Pagina pagina=paginas.get(p);
             pagina.add(c);
@@ -105,10 +102,10 @@ public abstract class Ficha implements Serializable{
         }
         
     }
-    public void addRecurso(Recurso r){
+    public void addRecurso(final Recurso r){
         recursos.add(r);
     }
-    public void addItem(Item i){
+    public void addItem(final Item i){
         inventario.add(i);
     }
     
@@ -118,7 +115,7 @@ public abstract class Ficha implements Serializable{
     public CharacterInformation getInfo(){
         return informacao;
     }
-    public void addInfo(CharacterInformation c) {
+    public void addInfo(final CharacterInformation c) {
         this.informacao=new CharacterInformation(c);
     }
     @Override
@@ -155,7 +152,7 @@ public abstract class Ficha implements Serializable{
         return experiencia;
     }
 
-    public void removeCaracteristica(Caracteristica caracteristica,int  i) {
+    public void removeCaracteristica(final Caracteristica caracteristica,int  i) {
         paginas.get(i).remove(caracteristica);
     }
 
@@ -163,11 +160,36 @@ public abstract class Ficha implements Serializable{
         return experiencia.getPontos();    
     }
 
-    public void removeRecurso(Recurso recurso) {
+    public void removeRecurso(final Recurso recurso) {
         recursos.remove(recurso);
     }
     public Hp getLife(){
         return life;
+    }
+
+    public Recurso findRecurso(String nome) {
+        for (Recurso r:recursos)
+        {
+            if (r.getLabel().equals(nome))
+                return r;
+        }
+        return null;
+    }
+
+    public Caracteristica findAtributo(String nome) {
+        for (Pagina p:paginas){
+              Caracteristica temp =p.findCaracteristica(nome);
+              if (temp!=null) return temp;
+        }
+        return null;        
+    }
+
+    public void removeItem(Item item) {
+        for (Item i :inventario){
+            if (i==item) inventario.remove(i);
+            break;
+        }
+            
     }
     
 }

@@ -8,7 +8,9 @@ package rpgsheet.elements;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import rpgsheet.elements.MundoDasTrevas.AtributoMundoDasTrevas;
 
 /**
  *
@@ -19,29 +21,27 @@ public class Pagina implements Serializable{
     List<Caracteristica> caracteristica;
     
     public Pagina(String label){
-        this.label=label;
+        this.label=label==null?"pagina":label;
         caracteristica=new ArrayList();
     }
      public Pagina(){
         this("pagina qualquer");
     }
    
-    public Pagina(Pagina p){
+    public Pagina(final Pagina p){
         this(p.label);
          for (Caracteristica c:p.caracteristica)
         {
-            if (c instanceof Atributo)
-                caracteristica.add(new Atributo((Atributo) c));
-            if (c instanceof Habilidade)
-                caracteristica.add(new Habilidade((Habilidade) c));
-            if (c instanceof Vantagem)
-                caracteristica.add(new Vantagem((Vantagem) c));            
+            if (c instanceof AtributoMundoDasTrevas)
+                caracteristica.add(new AtributoMundoDasTrevas((AtributoMundoDasTrevas) c));
+            else if (c instanceof Atributo)
+                caracteristica.add(new Atributo((Atributo) c)); 
         }
     }
-    public void add(Caracteristica c){        
+    public void add(final Caracteristica c){        
         caracteristica.add(c);
     }
-    public void remove(Caracteristica c){
+    public void remove(final Caracteristica c){
         caracteristica.remove(c);
     }
      public void remove(int i){
@@ -51,13 +51,17 @@ public class Pagina implements Serializable{
          return label;
      }
     public void setLabel(String nome){
-        this.label=nome;
+        this.label=label==null?label:nome;
     }
     public Caracteristica getElement(int index){
          return caracteristica.get(index);
      }
     public int getSize(){
         return caracteristica.size();
+    }
+    public void sortPage(){
+        Collections.sort(caracteristica);
+        Collections.reverse(caracteristica);        
     }
     @Override
      public String toString(){
@@ -66,4 +70,10 @@ public class Pagina implements Serializable{
             temp+="\n"+c;
          return temp;
      }
+     public Caracteristica findCaracteristica(String label) {
+        for (Caracteristica c:caracteristica)
+            if (c.getLabel().equals(label))
+                    return c;
+        return null;
+    }
 }

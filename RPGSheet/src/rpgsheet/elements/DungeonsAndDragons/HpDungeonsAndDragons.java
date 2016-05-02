@@ -14,14 +14,14 @@ import rpgsheet.elements.Hp;
  * @author Tiago
  */
 public class HpDungeonsAndDragons extends Hp {
-
+protected final static int VALOR_MAXIMO_PADRAO=10;
     public HpDungeonsAndDragons(String nome, int i, int i0) {
         super(nome,i,i0);
     }
     public HpDungeonsAndDragons(){
-        super("Vida",10,10);
+        super("Vida",VALOR_MAXIMO_PADRAO,VALOR_MAXIMO_PADRAO);
     }
-    public HpDungeonsAndDragons(HpDungeonsAndDragons h){
+    public HpDungeonsAndDragons(final HpDungeonsAndDragons h){
         super(h);
     }
     @Override
@@ -30,7 +30,7 @@ public class HpDungeonsAndDragons extends Hp {
         if (valor<(-maximo))
             JOptionPane.showMessageDialog(null,"instant death");
         else if (valor<0)
-            JOptionPane.showMessageDialog(null,"inconcient roll a dead dice");
+            JOptionPane.showMessageDialog(null,"inconcient, roll a dead dice");
     }
     
 }

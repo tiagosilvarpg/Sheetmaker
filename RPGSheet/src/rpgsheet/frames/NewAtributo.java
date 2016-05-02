@@ -6,7 +6,7 @@
 
 package rpgsheet.frames;
 
-import rpgsheet.elements.Habilidade;
+import rpgsheet.elements.Atributo;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import rpgsheet.elements.*;
@@ -16,16 +16,11 @@ import static rpgsheet.frames.Main.ficha;
  *
  * @author Tiago
  */
-public class newRecurso extends javax.swing.JDialog  {
-
-    private Habilidade habilidade;
-    public Habilidade getHabilidade(){
-        return this.habilidade;
-    }
+public class NewAtributo extends javax.swing.JDialog  {
     /**
      * Creates new form newAtributo
      */
-    public newRecurso() {
+    public NewAtributo() {
         Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dw = getSize();
         setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
@@ -33,7 +28,6 @@ public class newRecurso extends javax.swing.JDialog  {
         initComponents();
         getRootPane().setDefaultButton(ok);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +49,8 @@ public class newRecurso extends javax.swing.JDialog  {
         nome = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        custo = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -63,10 +59,10 @@ public class newRecurso extends javax.swing.JDialog  {
 
         nomeLabel.setText("nome");
 
-        valor.setText("10");
+        valor.setText("0");
         valor.setToolTipText("");
 
-        maximo.setText("10");
+        maximo.setText("5");
         maximo.setToolTipText("");
 
         valorLabel.setText("valor");
@@ -82,7 +78,7 @@ public class newRecurso extends javax.swing.JDialog  {
 
         jLabel1.setText("maximo");
 
-        nome.setText("mana");
+        nome.setText("atributo");
         nome.setToolTipText("");
 
         ok.setText("Add");
@@ -104,6 +100,10 @@ public class newRecurso extends javax.swing.JDialog  {
             }
         });
 
+        jLabel2.setText("custo");
+
+        custo.setText("1");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -124,21 +124,29 @@ public class newRecurso extends javax.swing.JDialog  {
                                 .addGap(16, 16, 16)
                                 .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(nome)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancel))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(descricaoLabel)
                         .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cancel))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(custo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(146, 146, 146)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,11 +156,15 @@ public class newRecurso extends javax.swing.JDialog  {
                     .addComponent(jLabel1)
                     .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(custo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descricaoLabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ok)
                     .addComponent(cancel)))
@@ -180,10 +192,13 @@ public class newRecurso extends javax.swing.JDialog  {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // OK
-        String l=nome.getText();
+        int pagina=Main.getCurrentPage();
+        String a=nome.getText();
+        String d=descricao.getText();
         int v=Integer.parseInt(valor.getText());
         int m=Integer.parseInt(maximo.getText());
-        ficha.addRecurso(new Recurso(l,v,m));
+        int c=Integer.parseInt(custo.getText());
+        ficha.addCaracteristica(new Atributo(a,v,m,d,c),pagina);        
         Main.refresh();
     }//GEN-LAST:event_okActionPerformed
 
@@ -214,20 +229,20 @@ public class newRecurso extends javax.swing.JDialog  {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(newRecurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(newRecurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(newRecurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(newRecurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new newRecurso().setVisible(true);
+                new NewAtributo().setVisible(true);
             }
         });
     }
@@ -235,9 +250,11 @@ public class newRecurso extends javax.swing.JDialog  {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
+    private javax.swing.JFormattedTextField custo;
     private javax.swing.JTextArea descricao;
     private javax.swing.JLabel descricaoLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField maximo;

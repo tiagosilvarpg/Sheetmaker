@@ -6,13 +6,9 @@
 
 package rpgsheet.frames;
 
-import rpgsheet.elements.Habilidade;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import static java.lang.StrictMath.random;
-import java.util.Random;
 import rpgsheet.elements.*;
-import static rpgsheet.frames.Main.ficha;
 
 /**
  *
@@ -20,26 +16,11 @@ import static rpgsheet.frames.Main.ficha;
  */
 public class RollDice extends javax.swing.JDialog  {
 
-    private Habilidade habilidade;
-    private Dado dado;
-    public Habilidade getHabilidade(){
-        return this.habilidade;
-    }
-    /**
-     * Creates new form newAtributo
-     */
-    public RollDice(Dado dado) {
-        this();
-        this.dado=dado;
-        this.quantidade.setText(dado.getQuantidade()+"");
-        this.faces.setText(dado.getFaces()+"");
-        
-    }
     public RollDice() {
         Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dw = getSize();
         setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
-        this.setModal(true);        
+        this.setModal(true);       
         initComponents();
         getRootPane().setDefaultButton(ok);
     }
@@ -176,15 +157,14 @@ public class RollDice extends javax.swing.JDialog  {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // OK
           
-        dado.setQuantidade(Integer.parseInt(quantidade.getText().trim()));
-        dado.setFaces(Integer.parseInt(faces.getText().trim()));
-        resultado.setText(dado.getResultado());
+        Dado.setQuantidade(Integer.parseInt(quantidade.getText().trim()));
+        Dado.setFaces(Integer.parseInt(faces.getText().trim()));
+        resultado.setText(Dado.getResultado());
         
     }//GEN-LAST:event_okActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
-
         this.dispose();
     }//GEN-LAST:event_cancelActionPerformed
 

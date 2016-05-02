@@ -1,7 +1,6 @@
 package rpgsheet.frames;
 
 
-import rpgsheet.elements.Ficha;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.logging.Level;
@@ -53,6 +52,7 @@ public class Janela extends javax.swing.JFrame {
         toolPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         editMode = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         mid = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
         newInfo = new javax.swing.JButton();
@@ -65,14 +65,13 @@ public class Janela extends javax.swing.JFrame {
         ResoursesButtonsPanel = new javax.swing.JPanel();
         ItensPanel = new javax.swing.JPanel();
         newItem = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        ItemsText = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        ItemButtonsPanel = new javax.swing.JPanel();
         bottom = new javax.swing.JPanel();
         newAtribute = new javax.swing.JButton();
         newPage = new javax.swing.JButton();
         PaginasTab = new javax.swing.JTabbedPane();
-        newHabilidade = new javax.swing.JButton();
-        newAdvantage = new javax.swing.JButton();
+        newVantagem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 153));
@@ -156,10 +155,17 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
-        editMode.setText("End edit Mode");
+        editMode.setText("Execute Wizard");
         editMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editModeActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Show Creator info");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -170,15 +176,18 @@ public class Janela extends javax.swing.JFrame {
             .addGroup(toolPanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(editMode)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap())
         );
         toolPanelLayout.setVerticalGroup(
             toolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(toolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton1)
-                .addComponent(editMode))
+                .addComponent(editMode)
+                .addComponent(jButton2))
         );
 
         javax.swing.GroupLayout topLayout = new javax.swing.GroupLayout(top);
@@ -301,10 +310,9 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
-        ItemsText.setEditable(false);
-        ItemsText.setColumns(20);
-        ItemsText.setRows(5);
-        jScrollPane3.setViewportView(ItemsText);
+        ItemButtonsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        ItemButtonsPanel.setLayout(new javax.swing.BoxLayout(ItemButtonsPanel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane5.setViewportView(ItemButtonsPanel);
 
         javax.swing.GroupLayout ItensPanelLayout = new javax.swing.GroupLayout(ItensPanel);
         ItensPanel.setLayout(ItensPanelLayout);
@@ -313,10 +321,10 @@ public class Janela extends javax.swing.JFrame {
             .addGroup(ItensPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ItensPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addGroup(ItensPanelLayout.createSequentialGroup()
                         .addComponent(newItem)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 124, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         ItensPanelLayout.setVerticalGroup(
@@ -324,7 +332,7 @@ public class Janela extends javax.swing.JFrame {
             .addGroup(ItensPanelLayout.createSequentialGroup()
                 .addComponent(newItem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3)
+                .addComponent(jScrollPane5)
                 .addContainerGap())
         );
 
@@ -349,6 +357,7 @@ public class Janela extends javax.swing.JFrame {
         bottom.setBorder(javax.swing.BorderFactory.createTitledBorder("Paginas"));
 
         newAtribute.setText("new Atribute");
+        newAtribute.setToolTipText("has multiple levels");
         newAtribute.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newAtributeActionPerformed(evt);
@@ -364,17 +373,11 @@ public class Janela extends javax.swing.JFrame {
 
         PaginasTab.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        newHabilidade.setText("new Ability");
-        newHabilidade.addActionListener(new java.awt.event.ActionListener() {
+        newVantagem.setText("new Advantage");
+        newVantagem.setToolTipText("have no levels");
+        newVantagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newHabilidadeActionPerformed(evt);
-            }
-        });
-
-        newAdvantage.setText("new Advantage");
-        newAdvantage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newAdvantageActionPerformed(evt);
+                newVantagemActionPerformed(evt);
             }
         });
 
@@ -387,28 +390,24 @@ public class Janela extends javax.swing.JFrame {
                 .addComponent(PaginasTab, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(newAtribute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newAdvantage, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                    .addComponent(newHabilidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(newAtribute, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                    .addComponent(newPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newVantagem, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         bottomLayout.setVerticalGroup(
             bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bottomLayout.createSequentialGroup()
-                .addGroup(bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bottomLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(PaginasTab, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(bottomLayout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(newAtribute)
-                        .addGap(18, 18, 18)
-                        .addComponent(newHabilidade)
-                        .addGap(18, 18, 18)
-                        .addComponent(newAdvantage)
-                        .addGap(18, 18, 18)
-                        .addComponent(newPage)))
+                .addGap(71, 71, 71)
+                .addComponent(newAtribute)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newVantagem)
+                .addGap(5, 5, 5)
+                .addComponent(newPage)
+                .addGap(378, 378, 378))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PaginasTab, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -474,7 +473,7 @@ public class Janela extends javax.swing.JFrame {
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
         // TODO add your handling code here:
-        Main.load();
+        Main.load(null);
         Main.refresh();
     }//GEN-LAST:event_loadActionPerformed
 
@@ -503,25 +502,25 @@ public class Janela extends javax.swing.JFrame {
         Main.newPage();
     }//GEN-LAST:event_newPageActionPerformed
 
-    private void newHabilidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newHabilidadeActionPerformed
-        // TODO add your handling code here:
-        Main.newHability();
-    }//GEN-LAST:event_newHabilidadeActionPerformed
-
-    private void newAdvantageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAdvantageActionPerformed
-        // TODO add your handling code here:
-        Main.newAdvantage();
-    }//GEN-LAST:event_newAdvantageActionPerformed
-
     private void editModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editModeActionPerformed
         // TODO add your handling code here:
-        
+        Main.wizard();
     }//GEN-LAST:event_editModeActionPerformed
 
     private void ManageExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageExperienceActionPerformed
         // TODO add your handling code here:
         Main.manageExperience();
     }//GEN-LAST:event_ManageExperienceActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, Main.ficha);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void newVantagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newVantagemActionPerformed
+        // TODO add your handling code here:
+        Main.newVantagem();
+    }//GEN-LAST:event_newVantagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,7 +529,7 @@ public class Janela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea CharacterInfo;
-    private javax.swing.JTextArea ItemsText;
+    private javax.swing.JPanel ItemButtonsPanel;
     private javax.swing.JPanel ItensPanel;
     private javax.swing.JButton ManageExperience;
     private javax.swing.JTabbedPane PaginasTab;
@@ -541,21 +540,21 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JButton editMode;
     private javax.swing.JPanel filePanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPanel left;
     private javax.swing.JButton load;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mid;
-    private javax.swing.JButton newAdvantage;
     private javax.swing.JButton newAtribute;
-    private javax.swing.JButton newHabilidade;
     private javax.swing.JButton newInfo;
     private javax.swing.JButton newItem;
     private javax.swing.JButton newPage;
     private javax.swing.JButton newResource;
+    private javax.swing.JButton newVantagem;
     private javax.swing.JButton newficha;
     private javax.swing.JButton save;
     private javax.swing.JPanel toolPanel;
@@ -571,14 +570,11 @@ public class Janela extends javax.swing.JFrame {
         CharacterInfo.setText(Main.ficha.getExperiencia().toString()+"\n"+Main.ficha.getInfo().toString());
     }
     private void loadResources() {
-        ResoursesButtonsPanel.removeAll(); 
-        for(Recurso r:Main.ficha.getResources()){
-            ResouceClick botao=new ResouceClick(r);            
-            ResoursesButtonsPanel.add(botao);
+        ResoursesButtonsPanel.removeAll();               
+        ResoursesButtonsPanel.add(new ButtonResource(Main.ficha.getLife()));
+        for(Recurso r:Main.ficha.getResources()){                
+            ResoursesButtonsPanel.add(new ButtonResource(r));
         }
-        ResouceClick botao=new ResouceClick(Main.ficha.getLife());            
-        ResoursesButtonsPanel.add(botao);
-        
     }
     private void loadCaracteristicas() {
         int number;
@@ -587,14 +583,14 @@ public class Janela extends javax.swing.JFrame {
        for(int i=0;i<Main.ficha.getPaginas().size();i++)        
         try{
             Pagina pagina=Main.ficha.getPagina(i);
-            PagePanel panel=new PagePanel();
+            PanelPage panel=new PanelPage();
             JPanel lista=panel.getTextPanel();
             PaginasTab.addTab(pagina.getLabel(),panel );
             PaginasTab.setTitleAt(i,Main.ficha.getPaginas().get(i).getLabel());
             lista.removeAll();
             for (int j=0;j<pagina.getSize();j++)
             {
-                CaracteristicaClick botao=new CaracteristicaClick(pagina.getElement(j));                
+                ButtonCaracteristica botao=new ButtonCaracteristica (pagina.getElement(j));                
                 botao.setToolTipText(pagina.getElement(j).getDescricao());
                 lista.add(botao);
             }
@@ -604,11 +600,10 @@ public class Janela extends javax.swing.JFrame {
         }
        PaginasTab.setSelectedIndex(number);
     }
-    private void loadItems() {
-        String text="";
-        for(Item r:Main.ficha.getItems()){
-           text+=r.toString()+"\n";
-        ItemsText.setText(text);
+    private void loadItems() {        
+        ItemButtonsPanel.removeAll();
+        for(Item i:Main.ficha.getItems()){                
+            ItemButtonsPanel.add(new ButtonItem(i));
         }
     }
 

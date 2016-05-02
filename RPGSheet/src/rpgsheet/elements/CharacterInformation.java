@@ -4,29 +4,28 @@
  * and open the template in the editor.
  */
 
-package rpgsheet.frames;
+package rpgsheet.elements;
 
-import rpgsheet.elements.Elemento;
-
+import java.io.Serializable;
 /**
  *
  * @author Tiago
  */
-public class CharacterInformation{
+public class CharacterInformation implements Serializable{
     protected String nome,classe,descricao;
     
     public CharacterInformation(){
         this("sem nome","sem classe","sem descricao");
         
     }
-    public CharacterInformation(CharacterInformation c){
+    public CharacterInformation(final CharacterInformation c){
         this(c.nome,c.classe,c.descricao);
     }
     public CharacterInformation(String nome,String classe,String descricao){
         super();
-        this.nome=nome;
-        this.classe=classe;
-        this.descricao=descricao;
+        this.nome=(nome==null)?"nome":nome;
+        this.classe=classe==null?"classe":classe;
+        this.descricao=descricao==null?"sem descricao":descricao;
     }
     public String getNome(){
         return nome;

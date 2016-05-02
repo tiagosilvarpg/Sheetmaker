@@ -20,7 +20,7 @@ public class XpDungeonsAndDragons extends Xp{
         proximoNivel=1;//cada xp vale 1 ponto;
         level=1;
     }
-    public XpDungeonsAndDragons(XpDungeonsAndDragons xp){
+    public XpDungeonsAndDragons(final XpDungeonsAndDragons xp){
         super(xp);
         level=1;
     }
@@ -28,7 +28,9 @@ public class XpDungeonsAndDragons extends Xp{
         super(total,1,pontos);
         level=1;
     }
-
+    public int getLevel(){
+        return level;
+    }
     @Override
     public void increase(int xp) {
         total =(total+xp>0) 

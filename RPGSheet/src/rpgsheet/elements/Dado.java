@@ -12,25 +12,22 @@ import java.util.Random;
  *
  * @author Tiago
  */
-public class Dado {
-    private int quantidade,faces;
-    public Dado(){
-        faces=6;
-        quantidade=1;
+ public class Dado {
+    static private int quantidade=6,faces=1;
+    
+    static public String getFaces() {
+        return  faces+"";
     }
-    public int getFaces() {
-        return  faces;
-    }
-    public void setFaces(int i) {
+    static public void setFaces(int i) {
         faces=(i>=2)?i:2;
     }
-    public int getQuantidade() {
-        return quantidade;
+    static public String getQuantidade() {
+        return quantidade+"";
     }
-    public void setQuantidade(int i){
+    static public void setQuantidade(int i){
         quantidade=(i>=1)?i:1;
     }
-    public String getResultado() {           
+    static public String getResultado() {           
         String result="";
         int temp,total=0;
         int diceNumber=quantidade;
@@ -44,7 +41,7 @@ public class Dado {
         
         return(result+"total="+total);
     }
-     @Override
+    @Override
     public String toString(){
         return (quantidade+" D"+faces);        
     }

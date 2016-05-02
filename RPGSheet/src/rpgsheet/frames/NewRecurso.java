@@ -6,7 +6,6 @@
 
 package rpgsheet.frames;
 
-import rpgsheet.elements.Habilidade;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import rpgsheet.elements.*;
@@ -16,23 +15,11 @@ import static rpgsheet.frames.Main.ficha;
  *
  * @author Tiago
  */
-public class newInfo extends javax.swing.JDialog  {
-
-    private Habilidade habilidade;
-
-    newInfo(CharacterInformation info) {
-        this();
-        this.nome.setText(info.getNome());
-        this.classe.setText(info.getClasse());
-        this.descricao.setText(info.getDescricao());
-    }
-    public Habilidade getHabilidade(){
-        return this.habilidade;
-    }
+public class NewRecurso extends javax.swing.JDialog  {
     /**
      * Creates new form newAtributo
      */
-    public newInfo() {
+    public NewRecurso() {
         Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dw = getSize();
         setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
@@ -52,14 +39,16 @@ public class newInfo extends javax.swing.JDialog  {
 
         jPanel3 = new javax.swing.JPanel();
         nomeLabel = new javax.swing.JLabel();
-        classe = new javax.swing.JTextField();
+        valor = new javax.swing.JTextField();
+        maximo = new javax.swing.JTextField();
         valorLabel = new javax.swing.JLabel();
         descricaoLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descricao = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        descricao = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -68,22 +57,29 @@ public class newInfo extends javax.swing.JDialog  {
 
         nomeLabel.setText("nome");
 
-        classe.setText("sem classe");
-        classe.setToolTipText("");
+        valor.setText("10");
+        valor.setToolTipText("");
 
-        valorLabel.setText("classe");
+        maximo.setText("10");
+        maximo.setToolTipText("");
+
+        valorLabel.setText("valor");
 
         descricaoLabel.setText("descricao");
 
-        nome.setText("nome");
-        nome.setToolTipText("");
-        nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeActionPerformed(evt);
-            }
-        });
+        descricao.setColumns(20);
+        descricao.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        descricao.setLineWrap(true);
+        descricao.setRows(5);
+        descricao.setText("descricao nao fornecida");
+        jScrollPane1.setViewportView(descricao);
 
-        ok.setText("Confirm");
+        jLabel1.setText("maximo");
+
+        nome.setText("mana");
+        nome.setToolTipText("");
+
+        ok.setText("Add");
         ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okActionPerformed(evt);
@@ -95,19 +91,12 @@ public class newInfo extends javax.swing.JDialog  {
             }
         });
 
-        cancel.setText("Cancel");
+        cancel.setText("Finish");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
             }
         });
-
-        descricao.setColumns(20);
-        descricao.setLineWrap(true);
-        descricao.setRows(5);
-        descricao.setText("descricao");
-        descricao.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(descricao);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -118,24 +107,26 @@ public class newInfo extends javax.swing.JDialog  {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(nomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(29, 29, 29))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(valorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(10, 10, 10)))
+                            .addComponent(nomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(valorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nome)
-                            .addComponent(classe)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel1)
+                                .addGap(16, 16, 16)
+                                .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nome)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cancel))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(descricaoLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -148,15 +139,14 @@ public class newInfo extends javax.swing.JDialog  {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valorLabel)
-                    .addComponent(classe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel1)
+                    .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(descricaoLabel)
-                        .addGap(92, 92, 92))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(descricaoLabel)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ok)
                     .addComponent(cancel)))
@@ -184,12 +174,10 @@ public class newInfo extends javax.swing.JDialog  {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // OK
-        String a=nome.getText();
-        String d=descricao.getText();
-        String c=classe.getText();
-  
-        ficha.addInfo(new CharacterInformation(a,c,d));
-        this.dispose();
+        String l=nome.getText();
+        int v=Integer.parseInt(valor.getText());
+        int m=Integer.parseInt(maximo.getText());
+        ficha.addRecurso(new Recurso(l,v,m));
         Main.refresh();
     }//GEN-LAST:event_okActionPerformed
 
@@ -202,10 +190,6 @@ public class newInfo extends javax.swing.JDialog  {
     private void okKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_okKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_okKeyPressed
-
-    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,20 +208,20 @@ public class newInfo extends javax.swing.JDialog  {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(newInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewRecurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(newInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewRecurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(newInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewRecurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(newInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewRecurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new newInfo().setVisible(true);
+                new NewRecurso().setVisible(true);
             }
         });
     }
@@ -245,14 +229,16 @@ public class newInfo extends javax.swing.JDialog  {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
-    private javax.swing.JTextField classe;
     private javax.swing.JTextArea descricao;
     private javax.swing.JLabel descricaoLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField maximo;
     private javax.swing.JTextField nome;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JButton ok;
+    private javax.swing.JTextField valor;
     private javax.swing.JLabel valorLabel;
     // End of variables declaration//GEN-END:variables
 }

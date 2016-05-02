@@ -6,6 +6,8 @@
 
 package rpgsheet.elements.interfaces;
 
+import Exceptions.MaximumReached;
+import Exceptions.NoPoints;
 import rpgsheet.elements.Xp;
 
 /**
@@ -14,6 +16,6 @@ import rpgsheet.elements.Xp;
  */
 public interface Melhoravel {
     
-    public abstract boolean upgrade(Xp experiencia);
+    public abstract void upgrade(final Xp experiencia) throws NoPoints,MaximumReached;
     
 }

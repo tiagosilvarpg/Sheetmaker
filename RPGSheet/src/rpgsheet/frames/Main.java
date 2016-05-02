@@ -8,10 +8,11 @@ package rpgsheet.frames;
 
 import java.io.*;
 import javax.swing.*;
+import rpgsheet.elements.Atributo;
 import rpgsheet.elements.Caracteristica;
 import rpgsheet.elements.Dado;
-import rpgsheet.elements.Data;
 import rpgsheet.elements.Ficha;
+import rpgsheet.elements.Item;
 import rpgsheet.elements.MundoDasTrevas.FichaMundoDasTrevas;
 import rpgsheet.elements.Recurso;
 
@@ -35,28 +36,21 @@ public class Main {
     }
     //METODOS DE SERIALIZACAO
     static void save(){//
-         FileOutputStream arquivo;
-         String filename;
-         filename = JOptionPane.showInputDialog("Digite o nome do arquivo","nome do arquivo");
-         if (filename!=null)
-         {
+        String filename = JOptionPane.showInputDialog("Digite o nome do arquivo","nome do arquivo");
+        if (filename!=null)
+        {
+            new File("C:\\fichas\\").mkdir();
             try 
-            {
-                new File("C:\\fichas\\").mkdir();
-                arquivo = new FileOutputStream("C:\\fichas\\"+filename+".ficha");
+            {   FileOutputStream arquivo = new FileOutputStream("C:\\fichas\\"+filename+".ficha");
                 ObjectOutputStream stream = new ObjectOutputStream(arquivo);
                 stream.writeObject(ficha);
-               System.out.println(filename+".ficha salvo com sucesso");
-            } catch (FileNotFoundException ex) {
-                System.out.println("arquivo nao encontrado");
+                System.out.println(filename+".ficha salvo com sucesso");            
             } catch (IOException ex) {
                 System.out.println("problema de entrada e saida");
+                System.out.println(ex);
             }
-         }
-    }
-    static void load(){
-        load(null);
-    }
+        }
+    }    
     static void load(String filename) {//le uma ficha salva
          FileInputStream finput;
          if (filename==null) filename = JOptionPane.showInputDialog("Digite o nome do arquivo a ser carregado","nome do arquivo");
@@ -85,28 +79,23 @@ public class Main {
             
          }
     }
-    static void refresh(){        
-        System.out.println(ficha);
-        mainFrame.refresh();
+    static void refresh(){
+       mainFrame.refresh();
     }
     static void newFicha(){
-        String nome,sistema;        
-        nome = JOptionPane.showInputDialog("criador","criador");
-        sistema = JOptionPane.showInputDialog("sistema","sistema");
-        ficha = new FichaMundoDasTrevas(nome,sistema,new Data());
-        refresh();
-    }
-    
+        NewFicha frame= new NewFicha();
+        frame.setVisible(true);
+    }    
     static void newInfo() {
-        newInfo frame=new newInfo(ficha.getInfo());
+        NewInfo frame=new NewInfo(ficha.getInfo());
         frame.setVisible(true);
     }
     static void newResource() {
-        newRecurso frame=new newRecurso();
+        NewRecurso frame=new NewRecurso();
         frame.setVisible(true);        
     }
     static void newItem() {
-        newItem frame=new newItem();
+        NewItem frame=new NewItem();
         frame.setVisible(true);
     }
     static void newPage(){
@@ -116,19 +105,11 @@ public class Main {
         refresh();
     }
     static void newAtribute() {
-        newAtributo frame=new newAtributo();
-        frame.setVisible(true);
-    }
-    static void newHability() {
-        newHabilidade frame=new newHabilidade();
-        frame.setVisible(true);
-    }
-    static void newAdvantage() {
-        newVantagem frame=new newVantagem();
+        NewAtributo frame=new NewAtributo();
         frame.setVisible(true);
     }
     static void diceRoll() {
-        RollDice frame=new RollDice(dado);
+        RollDice frame=new RollDice();
         frame.setVisible(true);    
     }
 
@@ -156,7 +137,7 @@ public class Main {
     }
 
     static void editCaracteristica(Caracteristica caracteristica) {
-        CaracteristicaEdit frame=new CaracteristicaEdit(caracteristica);
+        EditCaracteristica frame=new EditCaracteristica((Atributo)caracteristica);
         frame.setVisible(true);
     }
 
@@ -169,7 +150,28 @@ public class Main {
     }
 
     static void editRecurso(Recurso recurso) {
-        RecursoEdit frame=new RecursoEdit(recurso);
+        EditRecurso frame=new EditRecurso(recurso);
+        frame.setVisible(true);
+    }
+
+    static void editItem(Item item) {
+        EditItem frame=new EditItem(item);
+        frame.setVisible(true);
+    }
+
+    static void sortPage(int currentPage) {
+        ficha.getPagina(currentPage).sortPage();
+    }
+    public static void wizard(){
+        if (ficha instanceof FichaMundoDasTrevas){
+            WizardMundoDasTrevas frame=new WizardMundoDasTrevas();
+            frame.setVisible(true);
+        }
+        else JOptionPane.showMessageDialog(mainFrame,"Desculpe,somente Mundo Das Trevas tem Wizard");
+    }
+
+    static void newVantagem() {
+        NewVantagem frame=new NewVantagem();
         frame.setVisible(true);
     }
 

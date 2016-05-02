@@ -6,19 +6,26 @@
 
 package rpgsheet.frames;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import java.awt.event.MouseEvent;
+import rpgsheet.elements.Caracteristica;
 
 /**
  *
  * @author Tiago
  */
-public class PagePanel extends javax.swing.JPanel {
+public class ButtonCaracteristica extends javax.swing.JPanel {
 
     /**
-     * Creates new form PagePanel
+     * Creates new form ButtonCaracteristica
      */
-    public PagePanel() {
+    private Caracteristica caracteristica;
+    public ButtonCaracteristica(final Caracteristica c){
+        this();
+        caracteristica=c;
+        this.jButton1.setText(c.toString());
+        this.jButton1.setToolTipText(c.getDescricao());
+    }
+    public ButtonCaracteristica() {
         initComponents();
     }
 
@@ -31,17 +38,15 @@ public class PagePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ScrollPanel = new javax.swing.JScrollPane();
-        Panel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
-        ScrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        Panel.setBackground(new java.awt.Color(255, 255, 255));
-        Panel.setLayout(new javax.swing.BoxLayout(Panel, javax.swing.BoxLayout.Y_AXIS));
-        ScrollPanel.setViewportView(Panel);
-
-        jButton1.setText("Rename Page");
+        jButton1.setText("jButton1");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -52,40 +57,29 @@ public class PagePanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 255, Short.MAX_VALUE))
-                    .addComponent(ScrollPanel))
-                .addContainerGap())
+            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Main.getCurrentPage();
-        Main.renamePagina();
+        Main.editCaracteristica(caracteristica);            
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        if (evt.getButton() == MouseEvent.BUTTON2)
+        {
+            Main.removeCaracteristica(caracteristica);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Panel;
-    private javax.swing.JScrollPane ScrollPanel;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
-    public JPanel getTextPanel(){
-        return this.Panel;
-    }
 }
-

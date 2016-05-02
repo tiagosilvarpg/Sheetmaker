@@ -8,33 +8,29 @@ package rpgsheet.frames;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import rpgsheet.elements.Caracteristica;
+import rpgsheet.elements.Item;
 
 /**
  *
  * @author Tiago
  */
-public class CaracteristicaEdit extends javax.swing.JDialog {
-    private Caracteristica caracteristica;
+public class EditItem extends javax.swing.JDialog {
 
     /**
-     * Creates new form CaracteristicaEdit
-     * @param c
+     * Creates new form EditRecurso
      */
-    public CaracteristicaEdit(Caracteristica c){
-        this();
-        nomeCaracteristica.setText(c.getLabel());
-        this.caracteristica=c;
+    private Item item;
+    public EditItem(Item i){
+       this();
+       this.item=i;
     }
-    public CaracteristicaEdit() {
+    public EditItem() {
         Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dw = getSize();
         setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
         this.setModal(true);        
         initComponents();
-        getRootPane().setDefaultButton(add);
+        getRootPane().setDefaultButton(jButton1);
     }
 
     /**
@@ -46,25 +42,29 @@ public class CaracteristicaEdit extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nomeCaracteristica = new javax.swing.JLabel();
-        add = new javax.swing.JButton();
-        Remove = new javax.swing.JButton();
+        label = new javax.swing.JLabel();
+        valor = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        nomeCaracteristica.setText("jLabel1");
+        label.setText("Item");
 
-        add.setText("Upgrade");
-        add.addActionListener(new java.awt.event.ActionListener() {
+        valor.setText("0");
+
+        jButton1.setText("Add/Subtratc");
+        jButton1.setToolTipText("gasta o recurso em questao(mana, energia mp vida)");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        Remove.setText("Remove");
-        Remove.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("cancel");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -73,44 +73,47 @@ public class CaracteristicaEdit extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nomeCaracteristica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(57, 57, 57)
+                .addComponent(valor)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(label)
+                .addContainerGap(204, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nomeCaracteristica)
-                .addGap(29, 29, 29)
+                .addGap(9, 9, 9)
+                .addComponent(label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Remove)
-                    .addComponent(add))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton4))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if (caracteristica.upgrade(Main.ficha.getExperiencia())==false)
-            JOptionPane.showMessageDialog(null,"impossible check your current points");
-        Main.refresh();        
-        dispose();
-    }//GEN-LAST:event_addActionPerformed
-
-    private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
-        // TODO add your handling code here:
-        Main.removeCaracteristica(caracteristica);
         Main.refresh();
         dispose();
-    }//GEN-LAST:event_RemoveActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        item.gastar(-Integer.parseInt(valor.getText().trim()));
+        if (item.getQuantidade()<1) Main.ficha.removeItem(item);
+        Main.refresh();
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,27 +132,28 @@ public class CaracteristicaEdit extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CaracteristicaEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CaracteristicaEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CaracteristicaEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CaracteristicaEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CaracteristicaEdit().setVisible(true);
+                new EditItem().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Remove;
-    private javax.swing.JButton add;
-    private javax.swing.JLabel nomeCaracteristica;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel label;
+    private javax.swing.JFormattedTextField valor;
     // End of variables declaration//GEN-END:variables
 }

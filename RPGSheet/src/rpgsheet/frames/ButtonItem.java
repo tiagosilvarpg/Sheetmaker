@@ -7,24 +7,26 @@
 package rpgsheet.frames;
 
 import java.awt.event.MouseEvent;
-import rpgsheet.elements.Caracteristica;
+import rpgsheet.elements.Item;
 
 /**
  *
  * @author Tiago
  */
-public class CaracteristicaClick extends javax.swing.JPanel {
+public class ButtonItem extends javax.swing.JPanel {
 
     /**
      * Creates new form CaracteristicaClick
      */
-    private Caracteristica caracteristica;
-    public CaracteristicaClick(final Caracteristica c){
+    private Item item;
+    public ButtonItem(final Item i){
         this();
-        caracteristica=c;
-        this.jButton1.setText(c.toString());
+        item=i;
+        this.jButton1.setText(i.toString());
+        this.jButton1.setToolTipText(i.getDescricao());
     }
-    public CaracteristicaClick() {
+    public ButtonItem() {
+        
         initComponents();
     }
 
@@ -56,7 +58,7 @@ public class CaracteristicaClick extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,15 +68,12 @@ public class CaracteristicaClick extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Main.editCaracteristica(caracteristica);            
+        Main.editItem(item);            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        if (evt.getButton() == MouseEvent.BUTTON2)
-        {
-            Main.removeCaracteristica(caracteristica);
-        }
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
 

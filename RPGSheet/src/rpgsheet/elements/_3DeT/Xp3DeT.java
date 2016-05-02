@@ -14,7 +14,7 @@ import rpgsheet.elements.Xp;
  */
 public class Xp3DeT extends Xp {
 
-    public Xp3DeT(Xp3DeT x) {
+    public Xp3DeT(final Xp3DeT x) {
         super(x);
     }
     public Xp3DeT() {

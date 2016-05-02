@@ -19,7 +19,7 @@ public abstract class Hp extends Recurso {
     public Hp(String label,int valor,int maximo){
         super(label,valor,maximo);        
     }
-    public Hp(Hp outro){
+    public Hp(final Hp outro){
         super(outro.label,outro.valor,outro.maximo);        
     }
     @Override

@@ -6,7 +6,6 @@
 
 package rpgsheet.elements.MundoDasTrevas;
 
-import javax.swing.JOptionPane;
 import rpgsheet.elements.Xp;
 
 /**
@@ -19,7 +18,7 @@ public class XpMundoDasTrevas extends Xp{
         super();
         proximoNivel=1;//cada xp vale 1 ponto;        
     }
-    public XpMundoDasTrevas(XpMundoDasTrevas xp){
+    public XpMundoDasTrevas(final XpMundoDasTrevas xp){
         super(xp);     
     }
     public XpMundoDasTrevas(int total,int proximoNivel,int pontos){

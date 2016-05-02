@@ -7,25 +7,24 @@
 package rpgsheet.frames;
 
 import java.awt.event.MouseEvent;
-import rpgsheet.elements.Caracteristica;
 import rpgsheet.elements.Recurso;
 
 /**
  *
  * @author Tiago
  */
-public class ResouceClick extends javax.swing.JPanel {
+public class ButtonResource extends javax.swing.JPanel {
 
     /**
      * Creates new form CaracteristicaClick
      */
     private Recurso recurso;
-    public ResouceClick(final Recurso r){
+    public ButtonResource(final Recurso r){
         this();
         recurso=r;
         this.jButton1.setText(r.toString());
     }
-    public ResouceClick() {
+    public ButtonResource() {
         initComponents();
     }
 

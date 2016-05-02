@@ -12,19 +12,32 @@ package rpgsheet.elements;
 public class Item {
     protected String nome,descricao;
     protected int quantidade;
-    public Item(Item i){
+    
+    public int getQuantidade(){
+        return quantidade;
+    }
+    public Item(final Item i){
         this(i.nome,i.descricao,i.quantidade);
     }
     public Item(){
         this("pedra","é uma pedra dã",1);
     }
     public Item(String nome,String descricao, int quantidade){
-        this.nome=nome;
-        this.descricao=descricao;
-        this.quantidade=quantidade;
+        this.nome=nome==null?"item":nome;
+        this.descricao=descricao==null?"descricao do item":descricao;
+        this.quantidade=quantidade>0?quantidade:1;
     }
     @Override
     public String toString(){
         return nome+" ("+quantidade+")";
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void gastar(int i) {
+        quantidade=(i<quantidade)?quantidade-i:0;
+    }
+    
 }

@@ -8,7 +8,6 @@ package rpgsheet.elements;
 
 import rpgsheet.elements.interfaces.Gerenciavel;
 import java.io.Serializable;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,12 +32,12 @@ public abstract class Xp implements Gerenciavel,Serializable{
     }
     @Override
     public String toString(){
-        return "experiencia "+total+"/"+proximoNivel+"("+pontos+")";
+        return "experiencia "+total+"/"+proximoNivel+"("+pontos+" pontos)";
     }
     @Override
     abstract public void increase(int xp);
 
-    int getPontos() {
+    public int getPontos() {
         return this.pontos;
     }
 
@@ -52,7 +51,6 @@ public abstract class Xp implements Gerenciavel,Serializable{
             ? i
             :total+1;
     }
-
     public int getTotal() {
         return total;
     }

@@ -6,7 +6,7 @@
 
 package rpgsheet.frames;
 
-import rpgsheet.elements.Atributo;
+import rpgsheet.elements.CharacterInformation;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import rpgsheet.elements.*;
@@ -16,11 +16,18 @@ import static rpgsheet.frames.Main.ficha;
  *
  * @author Tiago
  */
-public class newAtributo extends javax.swing.JDialog  {
+public class NewInfo extends javax.swing.JDialog  {
+
+    NewInfo(CharacterInformation info) {
+        this();
+        this.nome.setText(info.getNome());
+        this.classe.setText(info.getClasse());
+        this.descricao.setText(info.getDescricao());
+    }    
     /**
      * Creates new form newAtributo
      */
-    public newAtributo() {
+    public NewInfo() {
         Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dw = getSize();
         setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
@@ -28,6 +35,7 @@ public class newAtributo extends javax.swing.JDialog  {
         initComponents();
         getRootPane().setDefaultButton(ok);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,16 +47,14 @@ public class newAtributo extends javax.swing.JDialog  {
 
         jPanel3 = new javax.swing.JPanel();
         nomeLabel = new javax.swing.JLabel();
-        valor = new javax.swing.JTextField();
-        maximo = new javax.swing.JTextField();
+        classe = new javax.swing.JTextField();
         valorLabel = new javax.swing.JLabel();
         descricaoLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        descricao = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descricao = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -57,29 +63,22 @@ public class newAtributo extends javax.swing.JDialog  {
 
         nomeLabel.setText("nome");
 
-        valor.setText("0");
-        valor.setToolTipText("");
+        classe.setText("sem classe");
+        classe.setToolTipText("");
 
-        maximo.setText("5");
-        maximo.setToolTipText("");
-
-        valorLabel.setText("valor");
+        valorLabel.setText("classe");
 
         descricaoLabel.setText("descricao");
 
-        descricao.setColumns(20);
-        descricao.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        descricao.setLineWrap(true);
-        descricao.setRows(5);
-        descricao.setText("descricao nao fornecida");
-        jScrollPane1.setViewportView(descricao);
-
-        jLabel1.setText("maximo");
-
-        nome.setText("atributo");
+        nome.setText("nome");
         nome.setToolTipText("");
+        nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeActionPerformed(evt);
+            }
+        });
 
-        ok.setText("Add");
+        ok.setText("Confirm");
         ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okActionPerformed(evt);
@@ -91,12 +90,19 @@ public class newAtributo extends javax.swing.JDialog  {
             }
         });
 
-        cancel.setText("Finish");
+        cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
             }
         });
+
+        descricao.setColumns(20);
+        descricao.setLineWrap(true);
+        descricao.setRows(5);
+        descricao.setText("descricao");
+        descricao.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(descricao);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -107,26 +113,24 @@ public class newAtributo extends javax.swing.JDialog  {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(valorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel1)
-                                .addGap(16, 16, 16)
-                                .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nome)))
+                                .addComponent(nomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(29, 29, 29))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(valorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(10, 10, 10)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nome)
+                            .addComponent(classe)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cancel))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(descricaoLabel)
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -139,14 +143,15 @@ public class newAtributo extends javax.swing.JDialog  {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valorLabel)
-                    .addComponent(jLabel1)
-                    .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(classe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descricaoLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(descricaoLabel)
+                        .addGap(92, 92, 92))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ok)
                     .addComponent(cancel)))
@@ -174,12 +179,12 @@ public class newAtributo extends javax.swing.JDialog  {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // OK
-        int pagina=Main.getCurrentPage();
         String a=nome.getText();
         String d=descricao.getText();
-        int v=Integer.parseInt(valor.getText());
-        int m=Integer.parseInt(maximo.getText());       
-        ficha.addCaracteristica(new Atributo(a,v,m,d),pagina);        
+        String c=classe.getText();
+  
+        ficha.addInfo(new CharacterInformation(a,c,d));
+        this.dispose();
         Main.refresh();
     }//GEN-LAST:event_okActionPerformed
 
@@ -192,6 +197,10 @@ public class newAtributo extends javax.swing.JDialog  {
     private void okKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_okKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_okKeyPressed
+
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,20 +219,20 @@ public class newAtributo extends javax.swing.JDialog  {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(newAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(newAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(newAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(newAtributo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new newAtributo().setVisible(true);
+                new NewInfo().setVisible(true);
             }
         });
     }
@@ -231,16 +240,14 @@ public class newAtributo extends javax.swing.JDialog  {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
+    private javax.swing.JTextField classe;
     private javax.swing.JTextArea descricao;
     private javax.swing.JLabel descricaoLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField maximo;
     private javax.swing.JTextField nome;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JButton ok;
-    private javax.swing.JTextField valor;
     private javax.swing.JLabel valorLabel;
     // End of variables declaration//GEN-END:variables
 }

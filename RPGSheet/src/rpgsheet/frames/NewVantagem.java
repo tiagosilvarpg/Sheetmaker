@@ -6,7 +6,7 @@
 
 package rpgsheet.frames;
 
-import rpgsheet.elements.Vantagem;
+import rpgsheet.elements.Atributo;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import rpgsheet.elements.*;
@@ -16,16 +16,11 @@ import static rpgsheet.frames.Main.ficha;
  *
  * @author Tiago
  */
-public class newHabilidade extends javax.swing.JDialog  {
-
-    private Habilidade habilidade;
-    public Habilidade getHabilidade(){
-        return this.habilidade;
-    }
+public class NewVantagem extends javax.swing.JDialog  {
     /**
      * Creates new form newAtributo
      */
-    public newHabilidade() {
+    public NewVantagem() {
         Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dw = getSize();
         setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
@@ -33,7 +28,6 @@ public class newHabilidade extends javax.swing.JDialog  {
         initComponents();
         getRootPane().setDefaultButton(ok);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,13 +39,9 @@ public class newHabilidade extends javax.swing.JDialog  {
 
         jPanel3 = new javax.swing.JPanel();
         nomeLabel = new javax.swing.JLabel();
-        valor = new javax.swing.JTextField();
-        maximo = new javax.swing.JTextField();
-        valorLabel = new javax.swing.JLabel();
         descricaoLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descricao = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
@@ -63,14 +53,6 @@ public class newHabilidade extends javax.swing.JDialog  {
 
         nomeLabel.setText("nome");
 
-        valor.setText("0");
-        valor.setToolTipText("");
-
-        maximo.setText("5");
-        maximo.setToolTipText("");
-
-        valorLabel.setText("valor");
-
         descricaoLabel.setText("descricao");
 
         descricao.setColumns(20);
@@ -80,9 +62,7 @@ public class newHabilidade extends javax.swing.JDialog  {
         descricao.setText("descricao nao fornecida");
         jScrollPane1.setViewportView(descricao);
 
-        jLabel1.setText("maximo");
-
-        nome.setText("habilidade");
+        nome.setText("atributo");
         nome.setToolTipText("");
 
         ok.setText("Add");
@@ -112,50 +92,36 @@ public class newHabilidade extends javax.swing.JDialog  {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(valorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nomeLabel)
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel1)
-                                .addGap(16, 16, 16)
-                                .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nome)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancel))
+                        .addComponent(nome))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(descricaoLabel)
                         .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 123, Short.MAX_VALUE)
+                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancel)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(valorLabel)
-                    .addComponent(jLabel1)
-                    .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descricaoLabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ok)
-                    .addComponent(cancel)))
+                    .addComponent(cancel))
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,7 +137,7 @@ public class newHabilidade extends javax.swing.JDialog  {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -182,10 +148,8 @@ public class newHabilidade extends javax.swing.JDialog  {
         // OK
         int pagina=Main.getCurrentPage();
         String a=nome.getText();
-        String d=descricao.getText();
-        int v=Integer.parseInt(valor.getText());
-        int m=Integer.parseInt(maximo.getText());
-        ficha.addCaracteristica(new Vantagem(a,v,m,d),pagina);  
+        String d=descricao.getText();        
+        ficha.addCaracteristica(new Vantagem(a,d),pagina);        
         Main.refresh();
     }//GEN-LAST:event_okActionPerformed
 
@@ -216,20 +180,20 @@ public class newHabilidade extends javax.swing.JDialog  {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(newHabilidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewVantagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(newHabilidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewVantagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(newHabilidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewVantagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(newHabilidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewVantagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new newHabilidade().setVisible(true);
+                new NewVantagem().setVisible(true);
             }
         });
     }
@@ -239,14 +203,10 @@ public class newHabilidade extends javax.swing.JDialog  {
     private javax.swing.JButton cancel;
     private javax.swing.JTextArea descricao;
     private javax.swing.JLabel descricaoLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField maximo;
     private javax.swing.JTextField nome;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JButton ok;
-    private javax.swing.JTextField valor;
-    private javax.swing.JLabel valorLabel;
     // End of variables declaration//GEN-END:variables
 }

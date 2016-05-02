@@ -1,6 +1,7 @@
 package rpgsheet.elements.DungeonsAndDragons;
 
 import rpgsheet.elements.Atributo;
+import rpgsheet.elements.Caracteristica;
 import rpgsheet.elements.Data;
 import rpgsheet.elements.Ficha;
 import rpgsheet.elements.Hp;
@@ -17,36 +18,31 @@ import rpgsheet.elements.Hp;
  */
 public class FichaDungeonsAndDragons extends Ficha{
     
-    public FichaDungeonsAndDragons(){
+     public FichaDungeonsAndDragons(String criador,String sistema,final Data data){
+         this();
+         this.creator=criador;
+         this.system=sistema;
+         this.data=data;    
+    }
+     public FichaDungeonsAndDragons(){
         super();
         addPage("Atributos");//0
          for (String nome:new String[]{ "Forca","Destreza","Constituicao","Inteligencia","Sabedoria","Carisma"})
          {
-             addCaracteristica(new Atributo(nome,0,20,""),0);
+             addCaracteristica(new Atributo(nome,1,20,"",1),0);
          }
          addPage("Atributos Secundarios");//1
-         for (String nome:new String[]{ "Deslocamento","Fortitude","Reflexos","Vontade","Classe de Armadura","Iniciativa"})
+         for (String nome:new String[]{"Iniciativa","Deslocamento","Fortitude","Reflexos","Vontade","Classe de Armadura"})
          {
-             addCaracteristica(new Atributo(nome,1,5,""),1);
+             addCaracteristica(new Atributo(nome,0,20,"",1),1);
          }
          addPage("Bonus racial");//2
          addPage("Habilidades de classe");//3
-         addPage("Pericias");//4
-         for (String nome:new String[]{ "Deslocamento","Fortitude","Reflexos","Vontade","Classe de Armadura","Iniciativa"})
-         {
-             addCaracteristica(new Atributo(nome,1,5,""),4);
-         }         
+         addPage("Pericias");//4           
          this.life=new HpDungeonsAndDragons();
     }
-     public FichaDungeonsAndDragons(FichaDungeonsAndDragons ficha){
+     public FichaDungeonsAndDragons(final FichaDungeonsAndDragons ficha){
          super(ficha);
     }
-     public FichaDungeonsAndDragons(String criador,String sistema,Data data){
-         this();
-         this.creator=criador;
-         this.system=sistema;
-         this.data=data;
-         
-}
     
 }

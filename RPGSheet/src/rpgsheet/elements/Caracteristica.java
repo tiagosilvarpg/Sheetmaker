@@ -8,60 +8,44 @@ package rpgsheet.elements;
 
 
 import java.io.Serializable;
-import rpgsheet.elements.interfaces.*;
 
 /**
  *
  * @author Tiago
  */
-abstract public class Caracteristica extends Elemento implements Serializable,Escalavel,Melhoravel{ 
- protected  int valor=0,maximo=5; 
+abstract public class Caracteristica implements Serializable,Comparable<Caracteristica>{ 
+ 
+  protected  String label,descricao;
     public Caracteristica(){
-        this("caracteristica",1,5);
+        this("caracteristica","descricao");
     }
-    public Caracteristica(Caracteristica i){
-        this(i.label,i.valor,i.maximo);
+    public Caracteristica(final Caracteristica i){
+        this(i.label,i.descricao);
     }
-    public Caracteristica(String label,int valor,int maximo){
-        super(label,"descricao");
-        this.valor=valor;
-        this.maximo=maximo;
+    public Caracteristica(String label,String descricao){
+        this.label=label==null?"caracteristica":label;
+        this.descricao=(descricao==null)? "Atributo sem descricao" : descricao; 
     } 
     public String getLabel(){
          return label;
      }
      public void setLabel(String label){
-         this.label=label;
+         this.label=(label==null)?"caracteristica":label;
      }
-     
- @Override
-     public void setValor(int i){
-         if (i>=0)
-         valor=i;
-     }
- @Override
-     public int getValor(){
-         return valor;
-     }
- @Override
-     public void setMaximo(int i){
-         if (i>0) maximo=i;
-     }
- @Override
-     public int getMaximo(){
-         return maximo;
-     }
-
     public String getDescricao() {
         return descricao;
     }
     public void setDescricao(String descricao){
-        this.descricao=descricao;
+        this.descricao=(descricao==null)?"caracteristica":descricao;
     }
- @Override
-    public abstract boolean upgrade(Xp experiencia);
-     @Override
-    public String toString(){
-        return (label+" "+valor+"/"+maximo);        
+    @Override
+    public int compareTo(Caracteristica o) {
+        return -1*(label.compareTo(o.label));
+    }
+    public boolean equals(final Atributo o)
+    {
+        if (label.equals(o.label))
+            return true;
+        return false;
     }
 }

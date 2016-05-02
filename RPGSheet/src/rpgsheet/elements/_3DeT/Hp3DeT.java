@@ -14,14 +14,14 @@ import rpgsheet.elements.Hp;
  * @author Tiago
  */
 public class Hp3DeT extends Hp {
-
+    protected static int VALOR_MAXIMO_PADRAO=10;
     public Hp3DeT() {
-        super("Pontos de Vida",10,10);
+        super("Pontos de Vida",VALOR_MAXIMO_PADRAO,VALOR_MAXIMO_PADRAO);
     }
     public Hp3DeT(String hp, int i, int i0) {
         super(hp,i,i0);
     }
-    public Hp3DeT(Hp3DeT h) {
+    public Hp3DeT(final Hp3DeT h) {
         super(h);
     }
     @Override
