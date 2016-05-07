@@ -15,7 +15,7 @@ import rpgsheet.elements.Xp;
  * @author Tiago
  */
 public class AtributoDungeonsAndDragons extends Atributo{
-    protected final static int VALOR_MAXIMO_PADRAO=20;
+    private final static int VALOR_MAXIMO_PADRAO=20;
     public AtributoDungeonsAndDragons(String label,int valor,int maximo,String descricao,int custo){
         super(label,valor,maximo,descricao,custo);
     }
@@ -32,8 +32,8 @@ public class AtributoDungeonsAndDragons extends Atributo{
         {
             if (experiencia.getPontos()>=getCost())
             {
+                experiencia.spendPoints(getCost()); 
                 valor+=1;
-                experiencia.increase(-1);                
             }
             else throw new NoPoints();
         }

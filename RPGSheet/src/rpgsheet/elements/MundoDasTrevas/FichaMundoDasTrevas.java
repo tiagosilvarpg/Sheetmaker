@@ -15,6 +15,7 @@ public class FichaMundoDasTrevas extends Ficha{
     
     public FichaMundoDasTrevas(){
         super();
+        informacao=new CharacterInformationMundoDasTrevas();
         life=new HpMundoDasTrevas();
         experiencia=new XpMundoDasTrevas();
         addRecurso(new Recurso("Humanidade", 0, 10));

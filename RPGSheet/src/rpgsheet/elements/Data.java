@@ -13,7 +13,7 @@ import java.util.Calendar;
  *
  * @author Tiago
  */
-public class Data implements Serializable{
+public final class Data implements Serializable{
     private int day,month,year;
     
     public Data(Data data) {

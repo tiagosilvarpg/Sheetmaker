@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 abstract public class Caracteristica implements Serializable,Comparable<Caracteristica>{ 
  
-  protected  String label,descricao;
+    protected  String label,descricao;
     public Caracteristica(){
         this("caracteristica","descricao");
     }

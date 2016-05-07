@@ -6,10 +6,10 @@
 
 package rpgsheet.frames;
 
-import rpgsheet.elements.CharacterInformation;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import rpgsheet.elements.*;
+import rpgsheet.elements.CharacterInformation;
+import rpgsheet.elements._3DeT.CharacterInformation3DeT;
 import static rpgsheet.frames.Main.ficha;
 
 /**
@@ -183,7 +183,7 @@ public class NewInfo extends javax.swing.JDialog  {
         String d=descricao.getText();
         String c=classe.getText();
   
-        ficha.addInfo(new CharacterInformation(a,c,d));
+        ficha.addInfo(new CharacterInformation3DeT(a,c,d));
         this.dispose();
         Main.refresh();
     }//GEN-LAST:event_okActionPerformed

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Tiago
  */
-public class CharacterInformation implements Serializable{
+public abstract class CharacterInformation implements Serializable{
     protected String nome,classe,descricao;
     
     public CharacterInformation(){

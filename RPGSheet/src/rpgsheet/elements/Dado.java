@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author Tiago
  */
- public class Dado {
+ public final class Dado {
     static private int quantidade=6,faces=1;
     
     static public String getFaces() {

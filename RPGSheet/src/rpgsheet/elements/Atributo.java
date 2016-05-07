@@ -16,7 +16,7 @@ import rpgsheet.elements.interfaces.Melhoravel;
  * @author Tiago
  */
 public class Atributo extends Caracteristica implements Escalavel,Melhoravel{    
-    protected final static int VALOR_MAXIMO_PADRAO=5;
+    private final static int VALOR_MAXIMO_PADRAO=5;
     protected  int valor=0,maximo=5;
     protected int custo;
     public Atributo(String label,int valor,int maximo,String descricao,int custo){

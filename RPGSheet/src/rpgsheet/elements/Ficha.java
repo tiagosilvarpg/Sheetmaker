@@ -6,6 +6,7 @@
 
 package rpgsheet.elements;
 
+import rpgsheet.elements._3DeT.CharacterInformation3DeT;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public abstract class Ficha implements Serializable{
      creator="tiago mendes";
      system="unknown";
      data=new Data();     
-     informacao=new CharacterInformation("personagem","classe","descricao");     
+     informacao=new CharacterInformation3DeT("personagem","classe","descricao");     
      life=new Hp3DeT();
      experiencia=new Xp3DeT();
      recursos=new ArrayList();     
@@ -77,7 +78,7 @@ public abstract class Ficha implements Serializable{
             if (r.experiencia instanceof XpDungeonsAndDragons)
                 this.experiencia=new XpDungeonsAndDragons((XpDungeonsAndDragons)r.experiencia);
      
-     this.informacao=new CharacterInformation(r.informacao);
+     this.informacao=new CharacterInformation3DeT(r.informacao);
      for (Pagina paginaTemp:r.paginas)
         this.paginas.add(new Pagina(paginaTemp));
      for (Recurso recursoTemp:r.recursos)
@@ -116,7 +117,7 @@ public abstract class Ficha implements Serializable{
         return informacao;
     }
     public void addInfo(final CharacterInformation c) {
-        this.informacao=new CharacterInformation(c);
+        this.informacao=new CharacterInformation3DeT(c);
     }
     @Override
     public String toString(){

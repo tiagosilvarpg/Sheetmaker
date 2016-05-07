@@ -57,4 +57,8 @@ public abstract class Xp implements Gerenciavel,Serializable{
     public int getProximoNivel() {
         return proximoNivel;
     }
+
+    public void spendPoints(int i) {
+        if (pontos>=i) pontos-=i;
+    }
 }

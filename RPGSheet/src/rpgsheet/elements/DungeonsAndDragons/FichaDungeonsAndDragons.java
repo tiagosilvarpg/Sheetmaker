@@ -17,7 +17,8 @@ import rpgsheet.elements.Hp;
  * @author Tiago
  */
 public class FichaDungeonsAndDragons extends Ficha{
-    
+     private final static int VALOR_MAXIMO_PADRAO=20;
+     private final static int CUSTO_PADRAO=1;
      public FichaDungeonsAndDragons(String criador,String sistema,final Data data){
          this();
          this.creator=criador;
@@ -26,15 +27,18 @@ public class FichaDungeonsAndDragons extends Ficha{
     }
      public FichaDungeonsAndDragons(){
         super();
+        int valorInicial;
         addPage("Atributos");//0
          for (String nome:new String[]{ "Forca","Destreza","Constituicao","Inteligencia","Sabedoria","Carisma"})
          {
-             addCaracteristica(new Atributo(nome,1,20,"",1),0);
+             valorInicial=1;
+             addCaracteristica(new Atributo(nome,valorInicial,VALOR_MAXIMO_PADRAO,"",CUSTO_PADRAO),0);
          }
          addPage("Atributos Secundarios");//1
          for (String nome:new String[]{"Iniciativa","Deslocamento","Fortitude","Reflexos","Vontade","Classe de Armadura"})
          {
-             addCaracteristica(new Atributo(nome,0,20,"",1),1);
+             valorInicial=0;
+             addCaracteristica(new Atributo(nome,valorInicial,VALOR_MAXIMO_PADRAO,"",CUSTO_PADRAO),1);
          }
          addPage("Bonus racial");//2
          addPage("Habilidades de classe");//3

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author FACOMP
  */
-public class Item implements Serializable{
+public final class Item implements Serializable{
     protected String nome,descricao;
     protected int quantidade;
     
