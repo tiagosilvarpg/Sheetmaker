@@ -90,8 +90,11 @@ public class FichaMundoDasTrevas extends Ficha{
          this();
          this.creator=criador;
          this.system=sistema;
-         this.data=data;
-         
+         this.data=data;         
+    }
+    @Override
+    public void  xpIncrese(int xp){
+        this.experiencia.increase(xp);
     }
      public void reset(){
          

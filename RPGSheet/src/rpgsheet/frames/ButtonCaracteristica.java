@@ -22,8 +22,9 @@ public class ButtonCaracteristica extends javax.swing.JPanel {
     public ButtonCaracteristica(final Caracteristica c){
         this();
         caracteristica=c;
-        this.jButton1.setText(c.toString());
-        this.jButton1.setToolTipText(c.getDescricao());
+        this.label.setText(c.getLabel());
+        this.value.setText(c.toString());
+        this.label.setToolTipText(c.getDescricao());
     }
     public ButtonCaracteristica() {
         initComponents();
@@ -38,47 +39,57 @@ public class ButtonCaracteristica extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        value = new javax.swing.JButton();
+        label = new javax.swing.JLabel();
 
-        jButton1.setText("jButton1");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        value.setText("jButton1");
+        value.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        value.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                valueMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        value.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                valueActionPerformed(evt);
             }
         });
+
+        label.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(value))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(value)
+                .addComponent(label))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void valueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valueActionPerformed
         // TODO add your handling code here:
         Main.editCaracteristica(caracteristica);            
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_valueActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void valueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valueMouseClicked
         // TODO add your handling code here:
         if (evt.getButton() == MouseEvent.BUTTON2)
         {
             Main.removeCaracteristica(caracteristica);
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_valueMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel label;
+    private javax.swing.JButton value;
     // End of variables declaration//GEN-END:variables
 }

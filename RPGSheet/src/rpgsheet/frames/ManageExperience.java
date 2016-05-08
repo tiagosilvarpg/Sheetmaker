@@ -155,7 +155,7 @@ public class ManageExperience extends javax.swing.JDialog {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-        experiencia.increase(Integer.parseInt(incremento.getText().trim()));
+        Main.ficha.xpIncrese(Integer.parseInt(incremento.getText().trim()));
         Main.refresh();
         dispose();
     }//GEN-LAST:event_addActionPerformed

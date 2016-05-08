@@ -150,6 +150,12 @@ public abstract class Ficha implements Serializable{
     }
 
     public Xp getExperiencia() {
+        if (experiencia instanceof XpDungeonsAndDragons)
+            return (XpDungeonsAndDragons) experiencia;
+        if (experiencia instanceof XpMundoDasTrevas)
+            return (XpMundoDasTrevas) experiencia;
+        if (experiencia instanceof Xp3DeT)            
+            return (Xp3DeT) experiencia;
         return experiencia;
     }
 
@@ -191,6 +197,16 @@ public abstract class Ficha implements Serializable{
             break;
         }
             
+    }
+    abstract public void  xpIncrese(int xp);
+    
+    public int findPaginaIndex(String nome){
+        for (int i=0;i<paginas.size();i++)
+        {
+            if (paginas.get(i).getLabel().equals(nome))
+            return i;
+        }
+        return -1;
     }
     
 }

@@ -30,6 +30,10 @@ public class Ficha3DeT extends Ficha{
      public Ficha3DeT(final Ficha3DeT ficha){
          super(ficha);
     }
+     @Override
+    public void  xpIncrese(int xp){
+        this.experiencia.increase(xp);
+    }
      public Ficha3DeT(String criador,String sistema,Data data){
          this();
          this.creator=criador;

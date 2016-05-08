@@ -40,11 +40,16 @@ public class XpDungeonsAndDragons extends Xp{
         {
             level+=1;
             proximoNivel=(level-1)*1000+1000;
+            
         }
     }
     @Override
     public void setProximoNivel(int i) {
         proximoNivel=(i>total)? i:total+1;
+    }
+    @Override
+    public String toString(){
+        return "experiencia "+total+"/"+proximoNivel+"("+pontos+" pontos)LVL "+level;
     }
     
     

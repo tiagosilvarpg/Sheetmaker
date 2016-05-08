@@ -61,7 +61,7 @@ public class Atributo extends Caracteristica implements Escalavel,Melhoravel{
     }
     @Override
     public String toString(){
-        return (label+" "+valor+"/"+maximo);        
+        return (valor+"/"+maximo);        
     }    
     @Override
     public void upgrade(final Xp experiencia) throws MaximumReached,NoPoints{
